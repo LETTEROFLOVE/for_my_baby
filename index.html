@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+<title>For Tanisha, from Sanyam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --parchment-light:#eddcb2;
+    --parchment-mid:#e0c88f;
+    --parchment-dark:#c9a765;
+    --ink:#3b2712;
+    --ink-soft:#5a3d1e;
+    --wax:#7a1f2b;
+    --wax-dark:#5c1620;
+    --gold:#b9902f;
+    --gold-bright:#d9b45c;
+    --wood-dark:#161009;
+    --wood-mid:#241a0e;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{
+    margin:0; padding:0;
+    min-height:100dvh;
+    background:var(--wood-dark);
+    font-family:'Cormorant Garamond', serif;
+    overflow-x:hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001s !important; transition-duration:0.001s !important; }
+  }
+
+  .stage{
+    position:relative;
+    min-height:100dvh;
+    width:100%;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(217,180,92,0.10), transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0.6), transparent 70%),
+      linear-gradient(180deg, var(--wood-mid), var(--wood-dark) 70%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+
+  /* ---------- WELCOME / SEALED SCROLL ---------- */
+  .welcome{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:28px;
+    text-align:center;
+    transition:opacity .6s ease, transform .6s ease;
+    z-index:5;
+  }
+  .welcome.gone{
+    opacity:0;
+    transform:scale(.96);
+    pointer-events:none;
+    position:absolute;
+  }
+
+  .eyebrow{
+    font-family:'Cinzel', serif;
+    letter-spacing:.35em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--gold-bright);
+    opacity:.85;
+  }
+
+  .rolled-scroll{
+    position:relative;
+    width:min(70vw, 220px);
+    cursor:pointer;
+    border:none;
+    background:none;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .roll-cap{
+    width:100%;
+    height:26px;
+    background:linear-gradient(180deg, var(--parchment-dark), var(--gold) 40%, var(--parchment-dark));
+    border-radius:50% / 12px;
+    box-shadow: inset 0 -3px 6px rgba(0,0,0,.35), 0 4px 10px rgba(0,0,0,.5);
+  }
+  .roll-body{
+    width:92%;
+    height:180px;
+    background:
+      repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 2px, transparent 2px 6px),
+      linear-gradient(180deg, var(--parchment-mid), var(--parchment-light) 45%, var(--parchment-mid));
+    box-shadow: inset 8px 0 14px rgba(0,0,0,.25), inset -8px 0 14px rgba(0,0,0,.25);
+  }
+
+  .wax-seal{
+    position:absolute;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    width:72px; height:72px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #9c2c39, var(--wax) 55%, var(--wax-dark) 100%);
+    box-shadow:0 6px 14px rgba(0,0,0,.55), inset 0 2px 3px rgba(255,255,255,.25), inset 0 -4px 8px rgba(0,0,0,.5);
+    display:flex; align-items:center; justify-content:center;
+    color:#f0d9a8;
+    font-family:'Cinzel Decorative', serif;
+    font-size:20px;
+    letter-spacing:1px;
+    transition:transform .25s ease, box-shadow .25s ease;
+    animation:seal-breathe 3.4s ease-in-out infinite;
+  }
+  .rolled-scroll:hover .wax-seal,
+  .rolled-scroll:focus-visible .wax-seal{
+    transform:translate(-50%,-50%) scale(1.06);
+    box-shadow:0 8px 18px rgba(0,0,0,.6), inset 0 2px 3px rgba(255,255,255,.3), inset 0 -4px 8px rgba(0,0,0,.5);
+  }
+  @keyframes seal-breathe{
+    0%,100%{ filter:brightness(1); }
+    50%{ filter:brightness(1.12); }
+  }
+
+  .hint{
+    color:var(--parchment-light);
+    opacity:.65;
+    font-size:15px;
+    letter-spacing:.08em;
+    font-style:italic;
+  }
+
+  /* seal-break burst */
+  .rolled-scroll.breaking .wax-seal{
+    animation:none;
+    transform:translate(-50%,-50%) scale(0);
+    transition:transform .5s cubic-bezier(.5,-0.3,.5,1.4);
+  }
+  .rolled-scroll.breaking .roll-cap.top{ transform:translateY(-40px); opacity:0; transition:all .7s ease .1s; }
+  .rolled-scroll.breaking .roll-cap.bottom{ transform:translateY(40px); opacity:0; transition:all .7s ease .1s; }
+  .rolled-scroll.breaking .roll-body{ opacity:0; transition:opacity .5s ease .2s; }
+
+  /* ---------- LETTER SCROLL ---------- */
+  .letter-stage{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:6vh 16px 8vh;
+    opacity:0;
+    pointer-events:none;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .letter-stage.show{
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  .parchment{
+    position:relative;
+    width:min(680px, 92vw);
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.02) 0 2px, transparent 2px 4px),
+      radial-gradient(ellipse at 30% 0%, rgba(255,255,255,.15), transparent 55%),
+      linear-gradient(180deg, var(--parchment-light), var(--parchment-mid) 50%, var(--parchment-light));
+    border-radius:6px;
+    box-shadow:
+      0 30px 60px rgba(0,0,0,.55),
+      0 0 0 1px rgba(90,61,30,.25),
+      inset 0 0 40px rgba(90,61,30,.18);
+    padding: clamp(28px, 6vw, 64px) clamp(20px, 7vw, 72px);
+    transform-origin: top center;
+    transform: scaleY(0.05);
+    opacity:0;
+    transition: transform .9s cubic-bezier(.2,.7,.25,1), opacity .5s ease;
+  }
+  .letter-stage.show .parchment{
+    transform: scaleY(1);
+    opacity:1;
+  }
+  .parchment::before,
+  .parchment::after{
+    content:"";
+    position:absolute;
+    left:-4%;
+    width:108%;
+    height:22px;
+    background:linear-gradient(180deg, var(--parchment-dark), var(--gold) 45%, var(--parchment-dark));
+    border-radius:50% / 10px;
+    box-shadow:0 4px 8px rgba(0,0,0,.4);
+  }
+  .parchment::before{ top:-11px; }
+  .parchment::after{ bottom:-11px; }
+
+  .watermark{
+    position:absolute;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    font-family:'Cinzel Decorative', serif;
+    font-size:clamp(90px, 22vw, 220px);
+    color:var(--ink-soft);
+    opacity:.06;
+    white-space:nowrap;
+    pointer-events:none;
+    user-select:none;
+    letter-spacing:4px;
+  }
+
+  .letter-content{ position:relative; color:var(--ink); }
+
+  .date-line{
+    font-family:'Cinzel', serif;
+    font-size:13px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    text-align:right;
+    margin:0 0 28px;
+    opacity:0;
+  }
+
+  h1.salutation{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size:clamp(28px, 5vw, 44px);
+    color:var(--wax-dark);
+    margin:0 0 22px;
+    line-height:1.2;
+    text-shadow:0 1px 0 rgba(255,255,255,.35);
+    opacity:0;
+  }
+
+  .letter-content p{
+    font-size:clamp(17px, 2.4vw, 20px);
+    line-height:1.75;
+    margin:0 0 20px;
+    opacity:0;
+  }
+  .letter-content p.indent{ text-indent:2em; }
+
+  .reveal{
+    animation: rise-in .8s ease forwards;
+  }
+  @keyframes rise-in{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .promise-box{
+    margin:34px 0;
+    padding:22px clamp(16px,4vw,30px);
+    border:1px solid rgba(90,61,30,.35);
+    border-left:3px solid var(--wax);
+    background:rgba(255,255,255,.15);
+    border-radius:2px;
+    opacity:0;
+  }
+  .promise-box h2{
+    font-family:'Cinzel', serif;
+    font-size:14px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--wax);
+    margin:0 0 14px;
+  }
+  .promise-box p{ margin:0 0 12px; font-size:clamp(16px,2.3vw,19px); }
+  .promise-box p:last-child{ margin-bottom:0; }
+  .promise-dates{
+    display:inline-block;
+    font-family:'Cinzel', serif;
+    letter-spacing:.06em;
+    color:var(--wax-dark);
+    font-weight:600;
+  }
+
+  .closing{
+    margin-top:36px;
+    opacity:0;
+  }
+  .closing p{ margin:0 0 4px; }
+  .signature{
+    font-family:'Dancing Script', cursive;
+    font-size:clamp(38px, 7vw, 56px);
+    color:var(--wax-dark);
+    margin-top:6px !important;
+  }
+
+  .seal-mark{
+    width:56px; height:56px;
+    border-radius:50%;
+    margin-top:22px;
+    background:radial-gradient(circle at 35% 30%, #9c2c39, var(--wax) 55%, var(--wax-dark) 100%);
+    box-shadow:0 4px 10px rgba(0,0,0,.4), inset 0 -3px 6px rgba(0,0,0,.4);
+    display:flex; align-items:center; justify-content:center;
+    color:#f0d9a8;
+    font-family:'Cinzel Decorative', serif;
+    font-size:16px;
+    opacity:0;
+  }
+
+  /* staggered timings, applied once .show class hits */
+  .letter-stage.show .date-line{ animation:rise-in .7s ease forwards; animation-delay:.7s; }
+  .letter-stage.show h1.salutation{ animation:rise-in .8s ease forwards; animation-delay:.85s; }
+  .letter-stage.show .p1{ animation:rise-in .8s ease forwards; animation-delay:1.05s; }
+  .letter-stage.show .p2{ animation:rise-in .8s ease forwards; animation-delay:1.25s; }
+  .letter-stage.show .p3{ animation:rise-in .8s ease forwards; animation-delay:1.45s; }
+  .letter-stage.show .promise-box{ animation:rise-in .8s ease forwards; animation-delay:1.7s; }
+  .letter-stage.show .p4{ animation:rise-in .8s ease forwards; animation-delay:1.95s; }
+  .letter-stage.show .closing{ animation:rise-in .8s ease forwards; animation-delay:2.15s; }
+  .letter-stage.show .seal-mark{ animation:rise-in .8s ease forwards; animation-delay:2.35s; }
+
+  footer.site-footer{
+    text-align:center;
+    color:rgba(237,220,178,.4);
+    font-size:12px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    padding:18px 0 30px;
+  }
+
+  @media (max-width:420px){
+    .rolled-scroll{ width:min(78vw, 190px); }
+    .roll-body{ height:150px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <div class="welcome" id="welcome">
+    <div class="eyebrow">A letter awaits</div>
+    <button class="rolled-scroll" id="sealBtn" aria-label="Break the seal to open the letter">
+      <div class="roll-cap top"></div>
+      <div class="roll-body"></div>
+      <div class="roll-cap bottom"></div>
+      <div class="wax-seal">T&amp;S</div>
+    </button>
+    <div class="hint">tap the seal to open it</div>
+  </div>
+
+  <div class="letter-stage" id="letterStage">
+    <div class="parchment" role="document" aria-label="Letter to Tanisha">
+      <div class="watermark">T&amp;S</div>
+      <div class="letter-content">
+        <p class="date-line reveal-target">8th of August</p>
+        <h1 class="salutation reveal-target">My Dearest Tanisha,</h1>
+
+        <p class="indent p1 reveal-target">Distance has a strange way of making love louder. Every mile between us seems to echo back the same thing — that you are the person I choose, again and again, even from here. I don't get to hold your hand today, so let me hold it in ink instead.</p>
+
+        <p class="indent p2 reveal-target">You are the first thing I think of before I've even opened my eyes properly, and the last thought I keep tucked away before I sleep. I call the space between us "Tanyam" sometimes — half you, half me, stitched into one word, the way I wish we could always be stitched into one room.</p>
+
+        <p class="indent p3 reveal-target">I know I can't close the distance yet. But I can give you something steadier than a promise made of words alone — a promise I intend to keep with my actions, one ordinary day at a time.</p>
+
+        <div class="promise-box reveal-target">
+          <h2>The Promise</h2>
+          <p>From the <span class="promise-dates">8th of August</span> to the <span class="promise-dates">22nd of August</span>, I will not smoke. I will not drink. Not one cigarette, not one drink — for fifteen days, for you, and honestly, for me too.</p>
+          <p>Every morning I wake up and keep this is a small proof, sent across the miles, that you make me want to be someone better.</p>
+        </div>
+
+        <p class="indent p4 reveal-target">Hold me to it. Ask me every day if you have to — I want you to. And when the 22nd comes, I want you to know that every single one of those days had your name on it.</p>
+
+        <div class="closing reveal-target">
+          <p>Forever, and from every distance,</p>
+          <div class="signature">Sanyam</div>
+        </div>
+        <div class="seal-mark reveal-target">T&amp;S</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">sealed with love · T &amp; S</footer>
+
+<script>
+  const sealBtn = document.getElementById('sealBtn');
+  const welcome = document.getElementById('welcome');
+  const letterStage = document.getElementById('letterStage');
+
+  function openLetter(){
+    sealBtn.classList.add('breaking');
+    sealBtn.disabled = true;
+    setTimeout(() => {
+      welcome.classList.add('gone');
+      letterStage.classList.add('show');
+    }, 550);
+  }
+
+  sealBtn.addEventListener('click', openLetter);
+  sealBtn.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      openLetter();
+    }
+  });
+</script>
+
+</body>
+</html>
