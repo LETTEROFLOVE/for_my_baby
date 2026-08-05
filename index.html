@@ -4,100 +4,104 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>💌 For Tanisha ❤️ From Sanyam</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Wooden Desk Background -->
+
+    <!-- Wooden Desk -->
     <div class="table"></div>
 
     <!-- Candle Glow -->
     <div class="candle-glow"></div>
 
-    <!-- Floating Dust -->
+    <!-- Dust Particles -->
     <div id="dust-container"></div>
 
-    <!-- Main Container -->
+    <!-- Floating Hearts Background -->
+    <div id="hearts-bg"></div>
+
+    <!-- Main Scene -->
     <div id="scene">
 
-        <!-- ENVELOPE (click to open) -->
+        <!-- ENVELOPE -->
         <div class="envelope-wrapper" id="envelopeWrapper">
             <div class="envelope" onclick="openLetter()">
-                <!-- Ribbon -->
-                <div class="ribbon ribbon-left"></div>
-                <div class="ribbon ribbon-right"></div>
-                <div class="ribbon ribbon-top"></div>
-                <div class="ribbon ribbon-bottom"></div>
+                <!-- Ribbon Cross -->
+                <div class="ribbon ribbon-horiz"></div>
+                <div class="ribbon ribbon-vert"></div>
 
-                <!-- Front Text (always on top) -->
+                <!-- Front Text -->
                 <div class="envelope-front">
-                    <div class="for-label">FOR</div>
-                    <div class="name-label">TANISHA</div>
-                    <div class="from-label">FROM SANYAM</div>
-                    <div class="sub-label">A letter that was always meant for you.</div>
+                    <span class="for-label">✨ FOR</span>
+                    <span class="name-label">TANISHA</span>
+                    <span class="from-label">💫 FROM SANYAM</span>
+                    <span class="sub-label">A letter that was always meant for you.</span>
                 </div>
 
-                <!-- Wax Seal -->
+                <!-- Wax Seal (centered over text) -->
                 <div class="seal" id="seal">
                     <span class="seal-text">TS</span>
                     <div class="seal-glow"></div>
                 </div>
             </div>
-            <div class="click-hint">✦ tap the seal ✦</div>
+            <div class="click-hint">💕 tap the seal to open 💕</div>
         </div>
 
-        <!-- LETTER (hidden until opened) -->
+        <!-- LETTER -->
         <div class="letter-wrapper" id="letterWrapper">
             <div class="letter" id="letter">
-                <!-- Texture & burnt edges -->
+                <!-- Paper Texture & Burnt Edges -->
                 <div class="paper-texture"></div>
                 <div class="burnt-edge burnt-top"></div>
                 <div class="burnt-edge burnt-bottom"></div>
                 <div class="burnt-edge burnt-left"></div>
                 <div class="burnt-edge burnt-right"></div>
 
-                <!-- Watermark -->
+                <!-- TS Watermark -->
                 <div class="watermark">TS</div>
 
-                <!-- Content -->
+                <!-- Letter Content (scrollable) -->
                 <div class="letter-content">
-                    <div class="date">25 May 2025</div>
+                    <div class="date">🌹 5 August 2026 🌹</div>
 
                     <div class="drop-cap">M</div>
                     <p class="first-line">y Dearest Tanisha,</p>
 
-                    <p>If ever life feels heavy, I promise to be your calm.</p>
-                    <p>If ever the world feels cold, I promise to be your warmth.</p>
-                    <p>If ever you doubt your worth, I promise to remind you of every reason why you are everything to me.</p>
+                    <p>💖 If ever life feels heavy, I promise to be your calm.</p>
+                    <p>☀️ If ever the world feels cold, I promise to be your warmth.</p>
+                    <p>🌟 If ever you doubt your worth, I promise to remind you of every reason why you are everything to me.</p>
 
                     <div class="promise-box">
                         <p class="promise-line">
-                            From <strong>8 August</strong> until <strong>22 August</strong>,
+                            📅 From <strong>8 August</strong> until <strong>22 August</strong>,
                             I promise not to smoke a single cigarette or drink any alcohol.
                         </p>
-                        <p class="promise-sub">No excuses. No exceptions.</p>
+                        <p class="promise-sub">✨ No excuses. No exceptions. ✨</p>
                     </div>
 
-                    <p>I may not have all the answers, but I promise to always choose you, today, tomorrow, and in every lifetime after.</p>
-                    <p>I promise to stand by you, to grow with you, and to love you, in the little moments and the big ones too.</p>
+                    <p>💫 I may not have all the answers, but I promise to always choose you, today, tomorrow, and in every lifetime after.</p>
+                    <p>🌈 I promise to stand by you, to grow with you, and to love you, in the little moments and the big ones too.</p>
 
                     <div class="signature">
                         <span class="sig-label">Forever yours,</span>
-                        <span class="sig-name">Sanyam</span>
+                        <span class="sig-name">Sanyam 💕</span>
                     </div>
 
-                    <!-- Decorative heart -->
-                    <div class="heart-divider">❤️</div>
+                    <div class="heart-divider">❤️‍🔥 ✦ ❤️‍🔥 ✦ ❤️‍🔥</div>
                 </div>
 
                 <!-- Navigation -->
                 <div class="letter-nav">
-                    <button class="nav-btn" onclick="closeLetter()">✕ Close</button>
-                    <span class="nav-hint">swipe or scroll to read more</span>
+                    <button class="nav-btn" onclick="closeLetter()">✕ Close Letter</button>
+                    <span class="nav-hint">👇 scroll to read more</span>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Confetti/Hearts container for burst effect -->
+    <div id="heart-burst"></div>
 
     <script src="script.js"></script>
 </body>
