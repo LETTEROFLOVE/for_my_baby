@@ -1,6 +1,14 @@
+// ─── INITIALIZATION ───
+document.addEventListener('DOMContentLoaded', () => {
+    initDust();
+    initFloatingHearts();
+});
+
 // ─── DUST PARTICLES ───
-(function createDust() {
+function initDust() {
     const container = document.getElementById('dust-container');
+    if (!container) return;
+
     for (let i = 0; i < 35; i++) {
         const d = document.createElement('div');
         d.className = 'dust';
@@ -11,19 +19,26 @@
         const dy = (Math.random() - 0.5) * 400 - 200;
         const dur = 10 + Math.random() * 16;
         const del = Math.random() * 14;
+
         d.style.cssText = `
-            left:${x}%; top:${y}%;
-            width:${size}px; height:${size}px;
-            --dx:${dx}px; --dy:${dy}px;
-            animation-duration:${dur}s; animation-delay:${del}s;
+            left: ${x}%; 
+            top: ${y}%;
+            width: ${size}px; 
+            height: ${size}px;
+            --dx: ${dx}px; 
+            --dy: ${dy}px;
+            animation-duration: ${dur}s; 
+            animation-delay: ${del}s;
         `;
         container.appendChild(d);
     }
-})();
+}
 
 // ─── FLOATING HEARTS BACKGROUND ───
-(function createFloatingHearts() {
+function initFloatingHearts() {
     const container = document.getElementById('hearts-bg');
+    if (!container) return;
+
     const emojis = ['❤️', '💕', '✨', '🌹', '💖'];
     for (let i = 0; i < 12; i++) {
         const el = document.createElement('div');
@@ -33,6 +48,7 @@
         const left = Math.random() * 100;
         const dur = 15 + Math.random() * 25;
         const del = Math.random() * 20;
+
         el.style.cssText = `
             left: ${left}%;
             font-size: ${size}px;
@@ -41,21 +57,30 @@
         `;
         container.appendChild(el);
     }
-})();
+}
 
 // ─── HEART BURST ON OPEN ───
-function burstHearts() {
+function burstHearts(e) {
     const container = document.getElementById('heart-burst');
+    if (!container) return;
+
     const emojis = ['❤️', '💕', '💖', '✨', '🌟', '🌹'];
+    
+    // Determine center source of burst (click position or screen center)
+    const centerX = e ? e.clientX : window.innerWidth / 2;
+    const centerY = e ? e.clientY : window.innerHeight / 2;
+
     for (let i = 0; i < 30; i++) {
         const heart = document.createElement('div');
         heart.className = 'burst-heart';
         heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        const x = window.innerWidth / 2 + (Math.random() - 0.5) * 200;
-        const y = window.innerHeight / 2 + (Math.random() - 0.5) * 100;
-        const tx = (Math.random() - 0.5) * 600;
-        const ty = (Math.random() - 0.5) * 600 - 300;
-        const size = 20 + Math.random() * 40;
+        
+        const x = centerX + (Math.random() - 0.5) * 100;
+        const y = centerY + (Math.random() - 0.5) * 100;
+        const tx = (Math.random() - 0.5) * 500;
+        const ty = (Math.random() - 0.5) * 500 - 150;
+        const size = 20 + Math.random() * 30;
+
         heart.style.cssText = `
             left: ${x}px;
             top: ${y}px;
@@ -65,29 +90,37 @@ function burstHearts() {
             animation-duration: ${1.2 + Math.random() * 0.8}s;
         `;
         container.appendChild(heart);
-        setTimeout(() => heart.remove(), 2500);
+        setTimeout(() => heart.remove(), 2200);
     }
 }
 
-// ─── OPEN LETTER ───
-function openLetter() {
+// ─── OPEN ENVELOPE / LETTER ───
+function openEnvelope(e) {
+    if (document.body.classList.contains('open')) return;
+
     document.body.classList.add('open');
-    burstHearts();
+    burstHearts(e);
+
     if (navigator.vibrate) navigator.vibrate(15);
 
-    // Auto-scroll to letter
+    // Auto-scroll to letter smoothly
     setTimeout(() => {
-        const wrapper = document.getElementById('letterWrapper');
+        const wrapper = document.getElementById('letter-wrapper') || document.getElementById('letterWrapper');
         if (wrapper) wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 900);
+    }, 800);
 }
 
-// ─── CLOSE LETTER ───
-function closeLetter() {
+// Alias for openLetter calls
+const openLetter = openEnvelope;
+
+// ─── CLOSE ENVELOPE / LETTER ───
+function closeEnvelope() {
     document.body.classList.remove('open');
-    // reset envelope
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     setTimeout(() => {
-        const wrap = document.getElementById('envelopeWrapper');
+        const wrap = document.getElementById('envelope') || document.getElementById('envelopeWrapper');
         if (wrap) {
             wrap.style.transition = 'none';
             wrap.style.transform = '';
@@ -96,15 +129,20 @@ function closeLetter() {
     }, 300);
 }
 
-// ─── KEYBOARD ───
+// Alias for closeLetter calls
+const closeLetter = closeEnvelope;
+
+// ─── KEYBOARD NAVIGATION ───
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && document.body.classList.contains('open')) closeLetter();
+    if (e.key === 'Escape' && document.body.classList.contains('open')) {
+        closeEnvelope();
+    }
     if ((e.key === 'Enter' || e.key === ' ') && !document.body.classList.contains('open')) {
-        document.querySelector('.seal')?.click();
+        openEnvelope();
     }
 });
 
-// ─── PARALLAX (desktop) ───
+// ─── PARALLAX (Desktop Hover Effect) ───
 let isDesktop = window.innerWidth > 768;
 window.addEventListener('resize', () => { isDesktop = window.innerWidth > 768; });
 
@@ -112,20 +150,24 @@ document.addEventListener('mousemove', (e) => {
     if (!isDesktop) return;
     const env = document.querySelector('.envelope');
     if (!env || document.body.classList.contains('open')) return;
+
     const rect = env.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
     const dx = (e.clientX - cx) / rect.width;
     const dy = (e.clientY - cy) / rect.height;
-    const max = 10;
-    env.style.transform = `perspective(800px) rotateX(${-dy * max}deg) rotateY(${dx * max}deg) scale(1.02)`;
-});
-document.addEventListener('mouseleave', () => {
-    document.querySelector('.envelope')?.style.removeProperty('transform');
+    const max = 8;
+
+    env.style.transform = `perspective(800px) rotateX(${-dy * max}deg) rotateY(${dx * max}deg) scale(1.01)`;
 });
 
-// ─── BREATHING LETTER ───
-const letterEl = document.getElementById('letter');
+document.addEventListener('mouseleave', () => {
+    const env = document.querySelector('.envelope');
+    if (env) env.style.removeProperty('transform');
+});
+
+// ─── BREATHING LETTER EFFECT ───
+const letterEl = document.querySelector('.letter') || document.getElementById('letter');
 if (letterEl) {
     let phase = 0;
     setInterval(() => {
@@ -133,6 +175,8 @@ if (letterEl) {
             phase += 0.02;
             const s = 1 + Math.sin(phase) * 0.0012;
             letterEl.style.transform = `scale(${s})`;
+        } else {
+            letterEl.style.transform = '';
         }
     }, 50);
 }
@@ -145,6 +189,5 @@ document.addEventListener('scroll', () => {
     hint.style.opacity = pct > 0.15 ? '0' : '1';
 });
 
-// ─── CONSOLE EASTER EGG ───
-console.log('%c❤️ For Tanisha ❤️', 'font-size:24px; color:#8b1a2b; font-weight:bold;');
-console.log('%cFrom Sanyam – 5 August 2026', 'font-size:16px; color:#3d2419; font-style:italic;');
+// ─── CONSOLE MESSAGE ───
+console.log('%c❤️ Crafted with love ❤️', 'font-size:20px; color:#8b1a2b; font-weight:bold;');
