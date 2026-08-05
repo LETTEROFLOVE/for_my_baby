@@ -9,13 +9,13 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: flex-start;  /* allow scrolling */
+    align-items: flex-start;
     font-family: 'Cormorant Garamond', serif;
     background: #120d0b;
-    overflow-y: auto;         /* scroll enabled */
+    overflow-y: auto;
     overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
-    padding: 20px 0;
+    padding: 10px 0 40px;
 }
 
 /* ─── WOODEN DESK ─── */
@@ -23,22 +23,17 @@ body {
     position: fixed;
     inset: 0;
     background:
-        radial-gradient(ellipse at 50% 80%, rgba(255, 180, 100, 0.10), transparent 60%),
+        radial-gradient(ellipse at 50% 80%, rgba(255, 180, 100, 0.12), transparent 60%),
         linear-gradient(180deg, #1a100d 0%, #2a1c17 30%, #3d281f 60%, #2a1c17 100%);
     z-index: 0;
 }
-
 .table::after {
     content: '';
     position: absolute;
     inset: 0;
     background:
-        repeating-linear-gradient(90deg,
-            rgba(75,47,33,0.25) 0px, rgba(75,47,33,0.25) 2px,
-            transparent 2px, transparent 6px),
-        repeating-linear-gradient(0deg,
-            rgba(60,38,27,0.10) 0px, rgba(60,38,27,0.10) 1px,
-            transparent 1px, transparent 8px);
+        repeating-linear-gradient(90deg, rgba(75, 47, 33, 0.2) 0px, rgba(75, 47, 33, 0.2) 2px, transparent 2px, transparent 6px),
+        repeating-linear-gradient(0deg, rgba(60, 38, 27, 0.1) 0px, rgba(60, 38, 27, 0.1) 1px, transparent 1px, transparent 8px);
     pointer-events: none;
 }
 
@@ -46,12 +41,11 @@ body {
 .candle-glow {
     position: fixed;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 20%, rgba(255, 200, 120, 0.08), transparent 50%);
+    background: radial-gradient(ellipse at 50% 15%, rgba(255, 200, 120, 0.1), transparent 50%);
     pointer-events: none;
     z-index: 0;
     animation: flicker 5s ease-in-out infinite alternate;
 }
-
 @keyframes flicker {
     0% { opacity: 0.4; transform: scale(1); }
     50% { opacity: 0.7; transform: scale(1.02); }
@@ -66,7 +60,6 @@ body {
     z-index: 1;
     overflow: hidden;
 }
-
 .dust {
     position: absolute;
     width: 3px;
@@ -75,12 +68,32 @@ body {
     border-radius: 50%;
     animation: floatDust linear infinite;
 }
-
 @keyframes floatDust {
-    0% { transform: translate(0,0) scale(1); opacity: 0; }
+    0% { transform: translate(0, 0) scale(1); opacity: 0; }
     10% { opacity: 0.6; }
     90% { opacity: 0.6; }
     100% { transform: translate(var(--dx), var(--dy)) scale(0.2); opacity: 0; }
+}
+
+/* ─── FLOATING HEARTS BACKGROUND ─── */
+#hearts-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+.floating-heart {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0.15;
+    animation: floatHeart linear infinite;
+}
+@keyframes floatHeart {
+    0% { transform: translateY(100vh) rotate(0deg) scale(0.5); opacity: 0; }
+    10% { opacity: 0.15; }
+    90% { opacity: 0.15; }
+    100% { transform: translateY(-10vh) rotate(720deg) scale(1); opacity: 0; }
 }
 
 /* ─── SCENE ─── */
@@ -90,10 +103,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     width: 100%;
-    max-width: 700px;
-    padding: 20px 16px 60px;
+    max-width: 680px;
+    padding: 10px 16px 40px;
     min-height: 100vh;
 }
 
@@ -101,49 +113,97 @@ body {
 .envelope-wrapper {
     position: relative;
     z-index: 10;
-    transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    margin: 40px 0 20px;
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin: 20px 0 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .envelope {
     position: relative;
-    width: 400px;
-    height: 260px;
-    background: linear-gradient(145deg, #f3e8d6, #dcc8b2);
-    border-radius: 8px;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1.6 / 1;
+    background: linear-gradient(145deg, #efe3d2, #d4bfa8);
+    border-radius: 12px;
     box-shadow:
-        0 30px 80px rgba(0,0,0,0.6),
-        0 10px 30px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.2);
+        0 30px 80px rgba(0, 0, 0, 0.7),
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
     cursor: pointer;
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     transform-origin: center;
 }
-
 .envelope:hover {
     transform: scale(1.02);
 }
 
-/* Flap (behind front text) */
+/* The flap (back triangle) */
 .envelope::before {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
-    border-left: 200px solid transparent;
-    border-right: 200px solid transparent;
-    border-top: 135px solid #e6d6c1;
+    border-left: 50% solid transparent;
+    border-right: 50% solid transparent;
+    border-top: 54% solid #dcc8b2;
     transform-origin: top;
-    transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-    border-radius: 6px 6px 0 0;
-    z-index: 1; /* below front text */
+    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 12px 12px 0 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-left: 50vw solid transparent;
+    border-right: 50vw solid transparent;
+    border-top: 54vw solid #dcc8b2;
+    max-width: 420px;
+    max-height: 262px;
+}
+/* Fix for the flap using pure width/height */
+.envelope::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    border-left: 210px solid transparent;
+    border-right: 210px solid transparent;
+    border-top: 140px solid #dcc8b2;
+    transform-origin: top;
+    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 12px 12px 0 0;
+    z-index: 1;
+    pointer-events: none;
 }
 
-/* Front text – always on top */
+/* ─── RIBBON ─── */
+.ribbon {
+    position: absolute;
+    background: linear-gradient(180deg, #a02030, #6b1020);
+    z-index: 3;
+    opacity: 0.9;
+    border-radius: 2px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.ribbon-horiz {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 8px;
+}
+.ribbon-vert {
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 100%;
+}
+
+/* ─── ENVELOPE FRONT TEXT ─── */
 .envelope-front {
     position: absolute;
     inset: 0;
@@ -153,78 +213,46 @@ body {
     justify-content: center;
     z-index: 5;
     pointer-events: none;
-    padding: 20px;
+    padding: 12px 10px;
     text-align: center;
 }
-
 .for-label {
-    font-size: 14px;
+    font-size: clamp(12px, 2.5vw, 18px);
     letter-spacing: 10px;
     color: rgba(60, 40, 30, 0.45);
     font-weight: 600;
-    margin-bottom: 2px;
 }
-
 .name-label {
     font-family: 'Great Vibes', cursive;
-    font-size: 48px;
+    font-size: clamp(36px, 10vw, 64px);
     color: #3d2419;
-    text-shadow: 0 1px 3px rgba(255,255,255,0.2);
-    letter-spacing: 4px;
+    text-shadow: 0 2px 6px rgba(255, 255, 255, 0.15);
     line-height: 1.1;
+    margin: 2px 0;
 }
-
 .from-label {
-    font-size: 13px;
+    font-size: clamp(11px, 2.2vw, 16px);
     letter-spacing: 8px;
     color: rgba(60, 40, 30, 0.4);
     font-weight: 600;
-    margin-top: 4px;
 }
-
 .sub-label {
-    font-size: 14px;
+    font-size: clamp(11px, 2vw, 15px);
     color: rgba(60, 40, 30, 0.5);
     font-style: italic;
-    margin-top: 8px;
+    margin-top: 4px;
     letter-spacing: 1px;
+    padding: 0 8px;
 }
-
-.click-hint {
-    margin-top: 14px;
-    font-size: 15px;
-    color: rgba(255, 220, 180, 0.4);
-    letter-spacing: 2px;
-    font-style: italic;
-    animation: pulseHint 2.5s ease-in-out infinite;
-}
-
-@keyframes pulseHint {
-    0%, 100% { opacity: 0.4; transform: scale(1); }
-    50% { opacity: 0.9; transform: scale(1.05); }
-}
-
-/* ─── RIBBON ─── */
-.ribbon {
-    position: absolute;
-    background: linear-gradient(180deg, #a02030, #6b1020);
-    z-index: 3;
-    opacity: 0.85;
-    border-radius: 2px;
-}
-.ribbon-left { left: 28px; top: 0; width: 8px; height: 100%; box-shadow: 2px 0 10px rgba(0,0,0,0.2); }
-.ribbon-right { right: 28px; top: 0; width: 8px; height: 100%; box-shadow: -2px 0 10px rgba(0,0,0,0.2); }
-.ribbon-top { left: 0; top: 28px; width: 100%; height: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-.ribbon-bottom { left: 0; bottom: 28px; width: 100%; height: 8px; box-shadow: 0 -2px 10px rgba(0,0,0,0.2); }
 
 /* ─── WAX SEAL ─── */
 .seal {
     position: absolute;
     left: 50%;
-    top: 46%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    width: 74px;
-    height: 74px;
+    width: clamp(56px, 16vw, 90px);
+    height: clamp(56px, 16vw, 90px);
     border-radius: 50%;
     background: radial-gradient(circle at 35% 30%, #d45a6e, #7d1025 60%, #4a0815);
     display: flex;
@@ -232,33 +260,44 @@ body {
     justify-content: center;
     z-index: 8;
     box-shadow:
-        0 8px 30px rgba(0,0,0,0.5),
-        inset 0 -4px 12px rgba(0,0,0,0.3),
-        inset 0 4px 12px rgba(255,200,150,0.2);
+        0 8px 30px rgba(0, 0, 0, 0.6),
+        inset 0 -4px 12px rgba(0, 0, 0, 0.3),
+        inset 0 4px 12px rgba(255, 200, 150, 0.2);
     transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: pointer;
+    pointer-events: auto;
 }
-
 .seal-text {
     font-family: 'Great Vibes', cursive;
-    font-size: 30px;
+    font-size: clamp(20px, 5.5vw, 36px);
     color: #f6e7d1;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     letter-spacing: 2px;
     transform: rotate(-6deg);
 }
-
 .seal-glow {
     position: absolute;
-    inset: -6px;
+    inset: -4px;
     border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, rgba(255,200,100,0.15), transparent 70%);
+    background: radial-gradient(circle at 35% 30%, rgba(255, 200, 100, 0.15), transparent 70%);
     animation: sealPulse 3s ease-in-out infinite alternate;
 }
-
 @keyframes sealPulse {
-    0% { transform: scale(1); opacity: 0.4; }
-    100% { transform: scale(1.15); opacity: 0.8; }
+    0% { transform: scale(1); opacity: 0.3; }
+    100% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.click-hint {
+    margin-top: 12px;
+    font-size: clamp(14px, 2.5vw, 18px);
+    color: rgba(255, 220, 180, 0.5);
+    letter-spacing: 2px;
+    font-style: italic;
+    animation: pulseHint 2.5s ease-in-out infinite;
+}
+@keyframes pulseHint {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
 }
 
 /* ─── OPEN STATE ─── */
@@ -270,62 +309,71 @@ body.open .seal {
     opacity: 0;
 }
 body.open .envelope-wrapper {
-    transform: translateY(60px) scale(0.85);
-    opacity: 0.5;
+    transform: translateY(40px) scale(0.85);
+    opacity: 0.3;
     pointer-events: none;
 }
 body.open .letter-wrapper {
     opacity: 1;
     transform: translateY(0) scale(1);
     pointer-events: all;
+    max-height: 3000px;
 }
 body.open .click-hint {
     display: none;
 }
 
-/* ─── LETTER ─── */
+/* ─── LETTER WRAPPER (Scroll Unrolling Effect) ─── */
 .letter-wrapper {
     position: relative;
     z-index: 5;
     width: 100%;
     max-width: 620px;
     opacity: 0;
-    transform: translateY(60px) scale(0.92);
-    transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: translateY(40px) scale(0.95);
+    transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     pointer-events: none;
-    margin: 20px 0 40px;
+    margin: 10px 0 30px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 2s ease-in-out, opacity 1.2s ease, transform 1.2s ease;
+}
+body.open .letter-wrapper {
+    max-height: 3000px; /* Allows full scroll */
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    overflow: visible;
 }
 
 .letter {
     position: relative;
     background: linear-gradient(170deg, #faf3e8, #ede4d6);
-    padding: 48px 40px 36px;
-    border-radius: 6px;
+    padding: clamp(24px, 5vw, 50px);
+    padding-top: clamp(30px, 6vw, 55px);
+    border-radius: 8px;
     box-shadow:
-        0 30px 80px rgba(0,0,0,0.6),
-        0 10px 30px rgba(0,0,0,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.3);
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 10px 30px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
     line-height: 1.9;
     color: #3f2a1d;
-    font-size: 18px;
-    overflow: visible;
-    min-height: 400px;
+    font-size: clamp(15px, 2.5vw, 20px);
+    min-height: 300px;
+    width: 100%;
 }
 
-/* Paper texture */
+/* Paper Texture */
 .paper-texture {
     position: absolute;
     inset: 0;
     pointer-events: none;
     background:
-        repeating-linear-gradient(0deg, transparent, transparent 30px,
-            rgba(180,160,145,0.04) 30px, rgba(180,160,145,0.04) 31px),
-        repeating-linear-gradient(90deg, transparent, transparent 30px,
-            rgba(180,160,145,0.04) 30px, rgba(180,160,145,0.04) 31px);
-    border-radius: 6px;
+        repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(180, 160, 145, 0.04) 30px, rgba(180, 160, 145, 0.04) 31px),
+        repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(180, 160, 145, 0.04) 30px, rgba(180, 160, 145, 0.04) 31px);
+    border-radius: 8px;
 }
 
-/* Burnt edges */
+/* Burnt Edges */
 .burnt-edge {
     position: absolute;
     pointer-events: none;
@@ -339,10 +387,10 @@ body.open .click-hint {
 /* Watermark */
 .watermark {
     position: absolute;
-    right: 24px;
-    bottom: 24px;
+    right: clamp(16px, 3vw, 30px);
+    bottom: clamp(16px, 3vw, 30px);
     font-family: 'Great Vibes', cursive;
-    font-size: 110px;
+    font-size: clamp(60px, 15vw, 120px);
     color: rgba(100, 70, 50, 0.05);
     pointer-events: none;
     transform: rotate(-6deg);
@@ -353,208 +401,197 @@ body.open .click-hint {
     position: relative;
     z-index: 2;
 }
-
 .date {
     text-align: right;
-    font-size: 15px;
-    color: rgba(60,40,30,0.5);
+    font-size: clamp(13px, 2vw, 17px);
+    color: rgba(60, 40, 30, 0.5);
     letter-spacing: 2px;
     font-weight: 500;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
-
 .drop-cap {
     float: left;
     font-family: 'Great Vibes', cursive;
-    font-size: 76px;
-    line-height: 0.85;
+    font-size: clamp(50px, 12vw, 80px);
+    line-height: 0.8;
     color: #8b1a2b;
-    margin-right: 6px;
+    margin-right: 4px;
     margin-top: -2px;
-    padding: 0 4px;
 }
-
 .first-line {
-    font-size: 20px;
+    font-size: clamp(17px, 3vw, 22px);
     font-weight: 600;
     color: #3d2419;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
-
 .letter-content p {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     text-indent: 20px;
     font-weight: 400;
+    opacity: 0;
+    animation: fadeInText 0.8s forwards;
+}
+.letter-content p:nth-child(1) { animation-delay: 0.6s; }
+.letter-content p:nth-child(2) { animation-delay: 0.8s; }
+.letter-content p:nth-child(3) { animation-delay: 1.0s; }
+.letter-content p:nth-child(4) { animation-delay: 1.2s; }
+.letter-content p:nth-child(5) { animation-delay: 1.4s; }
+.letter-content p:nth-child(6) { animation-delay: 1.6s; }
+.letter-content p:nth-child(7) { animation-delay: 1.8s; }
+.letter-content .promise-box { animation-delay: 1.0s; opacity: 0; animation: fadeInText 0.8s 1.0s forwards; }
+.letter-content .signature { animation-delay: 2.0s; opacity: 0; animation: fadeInText 0.8s 2.0s forwards; }
+.letter-content .heart-divider { animation-delay: 2.2s; opacity: 0; animation: fadeInText 0.8s 2.2s forwards; }
+
+@keyframes fadeInText {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Promise box */
 .promise-box {
     background: rgba(200, 180, 165, 0.12);
     border-left: 4px solid #a02030;
     border-right: 4px solid #a02030;
-    padding: 18px 16px;
-    margin: 20px 0 12px;
+    padding: clamp(12px, 2vw, 20px);
+    margin: 16px 0 10px;
     border-radius: 4px;
     text-align: center;
 }
-
 .promise-line {
-    font-size: 19px;
+    font-size: clamp(16px, 2.5vw, 20px);
     font-weight: 600;
     color: #61252d;
     text-indent: 0 !important;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
-
 .promise-line strong {
     color: #8b1a2b;
 }
-
 .promise-sub {
     font-style: italic;
-    font-size: 16px;
-    color: rgba(60,40,30,0.6);
+    font-size: clamp(14px, 2vw, 17px);
+    color: rgba(60, 40, 30, 0.6);
     text-indent: 0 !important;
     margin-bottom: 0;
 }
 
-/* Signature */
 .signature {
-    margin-top: 28px;
+    margin-top: 24px;
     text-align: right;
 }
-
 .sig-label {
     display: block;
-    font-size: 17px;
-    color: rgba(60,40,30,0.5);
+    font-size: clamp(15px, 2vw, 18px);
+    color: rgba(60, 40, 30, 0.5);
     letter-spacing: 2px;
 }
-
 .sig-name {
     font-family: 'Great Vibes', cursive;
-    font-size: 50px;
+    font-size: clamp(34px, 8vw, 54px);
     color: #3d2419;
     display: block;
     margin-top: -6px;
-    letter-spacing: 2px;
 }
-
 .heart-divider {
     text-align: center;
-    font-size: 22px;
+    font-size: clamp(18px, 3vw, 28px);
     color: #a02030;
-    margin-top: 24px;
-    opacity: 0.5;
+    margin-top: 20px;
+    opacity: 0.6;
 }
 
-/* ─── NAVIGATION ─── */
+/* ─── NAV ─── */
 .letter-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 24px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(60,40,30,0.08);
-    position: relative;
-    z-index: 3;
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(60, 40, 30, 0.08);
+    flex-wrap: wrap;
+    gap: 10px;
 }
-
 .nav-btn {
-    background: rgba(60,40,30,0.08);
+    background: rgba(60, 40, 30, 0.08);
     border: none;
-    padding: 8px 24px;
+    padding: 8px 22px;
     border-radius: 30px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 17px);
     color: #3d2419;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
     letter-spacing: 1px;
 }
-
 .nav-btn:hover {
-    background: rgba(60,40,30,0.18);
+    background: rgba(60, 40, 30, 0.18);
     transform: scale(1.04);
 }
-
 .nav-hint {
-    font-size: 14px;
-    color: rgba(60,40,30,0.35);
+    font-size: clamp(13px, 1.8vw, 15px);
+    color: rgba(60, 40, 30, 0.35);
     font-style: italic;
-    letter-spacing: 0.5px;
+}
+
+/* ─── HEART BURST ─── */
+#heart-burst {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+}
+.burst-heart {
+    position: absolute;
+    font-size: 30px;
+    animation: burstAnim 1.5s ease-out forwards;
+}
+@keyframes burstAnim {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(720deg); opacity: 0; }
 }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 640px) {
+@media (max-width: 480px) {
     .envelope {
-        width: 320px;
-        height: 210px;
+        max-width: 340px;
     }
     .envelope::before {
-        border-left-width: 160px;
-        border-right-width: 160px;
-        border-top-width: 110px;
+        border-left-width: 170px;
+        border-right-width: 170px;
+        border-top-width: 113px;
     }
-    .name-label {
-        font-size: 36px;
-    }
-    .for-label { font-size: 12px; letter-spacing: 6px; }
-    .from-label { font-size: 11px; letter-spacing: 5px; }
-    .sub-label { font-size: 12px; }
     .seal {
         width: 60px;
         height: 60px;
     }
     .seal-text {
-        font-size: 24px;
+        font-size: 22px;
     }
-    .ribbon-left, .ribbon-right { width: 6px; left: 20px; right: 20px; }
-    .ribbon-top, .ribbon-bottom { height: 6px; top: 20px; bottom: 20px; }
-
+    .ribbon-horiz {
+        height: 6px;
+    }
+    .ribbon-vert {
+        width: 6px;
+    }
     .letter {
-        padding: 28px 20px 24px;
-        font-size: 16px;
+        padding: 20px 16px;
     }
-    .drop-cap {
-        font-size: 56px;
-    }
-    .first-line {
-        font-size: 17px;
-    }
-    .promise-line {
-        font-size: 17px;
-    }
-    .sig-name {
-        font-size: 38px;
-    }
-    .watermark {
-        font-size: 80px;
-        right: 16px;
-        bottom: 16px;
+    .letter-content p {
+        text-indent: 14px;
     }
     .letter-nav {
         flex-direction: column;
-        gap: 10px;
         align-items: center;
-    }
-    .click-hint {
-        font-size: 13px;
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 380px) {
     .envelope {
-        width: 270px;
-        height: 180px;
+        max-width: 280px;
     }
     .envelope::before {
-        border-left-width: 135px;
-        border-right-width: 135px;
-        border-top-width: 95px;
-    }
-    .name-label {
-        font-size: 28px;
+        border-left-width: 140px;
+        border-right-width: 140px;
+        border-top-width: 93px;
     }
     .seal {
         width: 48px;
@@ -563,20 +600,7 @@ body.open .click-hint {
     .seal-text {
         font-size: 18px;
     }
-    .letter {
-        padding: 20px 14px 18px;
-        font-size: 14px;
-    }
-    .drop-cap {
-        font-size: 44px;
-    }
-    .first-line {
-        font-size: 15px;
-    }
-    .promise-line {
-        font-size: 15px;
-    }
-    .sig-name {
-        font-size: 30px;
+    .name-label {
+        font-size: 28px;
     }
 }
