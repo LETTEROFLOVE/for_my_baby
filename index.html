@@ -2,119 +2,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Tanisha</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:
-radial-gradient(circle at top,rgba(255,210,150,.15),transparent 35%),
-linear-gradient(#2a1c17,#120d0b);
-font-family:'Cormorant Garamond',serif;
-overflow:hidden;
-}
-.table{
-position:absolute;inset:0;
-background:
-linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
-repeating-linear-gradient(90deg,#4b2f21 0,#4b2f21 18px,#573727 18px,#573727 36px);
-}
-.envelope{
-position:relative;
-width:340px;height:220px;
-background:#efe3d2;
-border-radius:4px;
-box-shadow:0 30px 60px rgba(0,0,0,.45);
-cursor:pointer;
-transition:.7s;
-z-index:2;
-}
-.envelope:before{
-content:"";
-position:absolute;
-left:0;right:0;top:0;
-border-left:170px solid transparent;
-border-right:170px solid transparent;
-border-top:110px solid #e6d6c1;
-transform-origin:top;
-transition:.8s;
-}
-.seal{
-position:absolute;
-left:50%;top:48%;
-transform:translate(-50%,-50%);
-width:58px;height:58px;border-radius:50%;
-background:radial-gradient(circle at 35% 30%,#c74b61,#7d1025);
-display:flex;align-items:center;justify-content:center;
-color:#f6e7d1;font-weight:bold;
-box-shadow:0 8px 20px rgba(0,0,0,.4);
-transition:.5s;
-}
-.letter{
-position:absolute;
-width:520px;
-max-width:90vw;
-background:#f8f2e8;
-padding:50px;
-box-shadow:0 25px 60px rgba(0,0,0,.45);
-line-height:1.8;
-color:#3f2a1d;
-opacity:0;
-transform:translateY(120px) scale(.9);
-transition:.9s;
-border-radius:3px;
-}
-h1{
-font-family:'Great Vibes',cursive;
-font-size:54px;
-margin-bottom:20px;
-color:#61252d;
-}
-.signature{
-margin-top:30px;
-font-family:'Great Vibes',cursive;
-font-size:42px;
-}
-.open .envelope:before{transform:rotateX(180deg)}
-.open .seal{transform:translate(-50%,-50%) scale(0)}
-.open .envelope{transform:translateY(180px);opacity:0}
-.open .letter{opacity:1;transform:translateY(0) scale(1)}
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>For Tanisha ❤️ From Sanyam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="table"></div>
+    <!-- Wooden Desk Background -->
+    <div class="table"></div>
 
-<div id="scene">
-<div class="envelope" onclick="openLetter()">
-<div class="seal">T&S</div>
-</div>
+    <!-- Candle Glow Overlay -->
+    <div class="candle-glow"></div>
 
-<div class="letter">
-<h1>My Dearest Tanisha,</h1>
+    <!-- Floating Dust Particles -->
+    <div id="dust-container"></div>
 
-<p>Distance has a strange way of making love louder. Every mile between us reminds me how certain I am about us. Since I can't hold your hand today, let these words do it for me.</p>
+    <!-- Main Scene -->
+    <div id="scene" class="scene">
+        <!-- ENVELOPE -->
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope" onclick="openLetter()">
+                <!-- Parchment texture overlay -->
+                <div class="envelope-texture"></div>
 
-<p>You are the first thought that greets me every morning and the last one that stays with me every night. Even from far away, you make ordinary days feel meaningful.</p>
+                <!-- Silk Ribbon -->
+                <div class="ribbon ribbon-left"></div>
+                <div class="ribbon ribbon-right"></div>
+                <div class="ribbon ribbon-top"></div>
+                <div class="ribbon ribbon-bottom"></div>
 
-<p>From <strong>8 August</strong> until <strong>22 August</strong>, I promise not to smoke a single cigarette or drink any alcohol. No excuses, no exceptions. Every day I keep that promise is another day I'm choosing to become someone better—for you and for us.</p>
+                <!-- Wax Seal -->
+                <div class="seal" id="seal">
+                    <span class="seal-text">TS</span>
+                    <div class="seal-glow"></div>
+                </div>
 
-<p>I know fifteen days won't erase the distance between us, but it's a promise I can keep, and I intend to keep every single day.</p>
+                <!-- Envelope Front Text -->
+                <div class="envelope-front-text">
+                    <span class="for-text">FOR</span>
+                    <span class="name-text">TANISHA</span>
+                    <span class="from-text">FROM SANYAM</span>
+                    <span class="sub-text">A letter that was always meant for you.</span>
+                </div>
+            </div>
+        </div>
 
-<div class="signature">Forever yours,<br>Sanyam</div>
-</div>
-</div>
+        <!-- LETTER -->
+        <div class="letter-wrapper" id="letterWrapper">
+            <div class="letter" id="letter">
+                <!-- Paper Texture Overlay -->
+                <div class="paper-texture"></div>
 
-<script>
-function openLetter(){
-document.body.classList.add('open');
-}
-</script>
+                <!-- Burnt Edges -->
+                <div class="burnt-edge burnt-top"></div>
+                <div class="burnt-edge burnt-bottom"></div>
+                <div class="burnt-edge burnt-left"></div>
+                <div class="burnt-edge burnt-right"></div>
 
+                <!-- TS Watermark -->
+                <div class="watermark">TS</div>
+
+                <!-- Letter Content -->
+                <div class="letter-content">
+                    <div class="date">25 May 2025</div>
+
+                    <div class="drop-cap">M</div>
+                    <p class="first-line">y Dearest Tanisha,</p>
+
+                    <p>If ever life feels heavy, I promise to be your calm.</p>
+                    <p>If ever the world feels cold, I promise to be your warmth.</p>
+                    <p>If ever you doubt your worth, I promise to remind you of every reason why you are everything to me.</p>
+
+                    <p class="promise-highlight">
+                        From <strong>8 August</strong> until <strong>22 August</strong>,<br />
+                        I promise not to smoke a single cigarette<br />
+                        or drink any alcohol.
+                    </p>
+                    <p class="promise-highlight-sub">No excuses. No exceptions.</p>
+
+                    <p>I may not have all the answers, but I promise to always choose you, today, tomorrow, and in every lifetime after.</p>
+                    <p>I promise to stand by you, to grow with you, and to love you, in the little moments and the big ones too.</p>
+
+                    <div class="signature">
+                        <span class="signature-label">Forever yours,</span>
+                        <span class="signature-name">Sanyam</span>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="letter-nav">
+                    <button class="nav-btn" onclick="closeLetter()">✕ Close</button>
+                    <span class="nav-hint">Swipe or scroll to continue</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
