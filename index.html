@@ -4,40 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>💌 For Tanisha ❤️ From Sanyam</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
     <style>
-        /* ───────── RESET ───────── */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html,
         body {
-            width: 100%;
             min-height: 100vh;
-            font-family: 'Cormorant Garamond', serif;
-            background: #120d0b;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: 'Cormorant Garamond', serif;
+            background: #120d0b;
             padding: 20px;
+            overflow-x: hidden;
         }
 
-        /* ───────── WOODEN DESK ───────── */
+        /* ─── WOODEN DESK ─── */
         .desk {
             position: fixed;
             inset: 0;
             z-index: 0;
             background:
-                radial-gradient(ellipse at 50% 80%, rgba(200, 150, 100, 0.08), transparent 60%),
-                linear-gradient(180deg, #1a100d 0%, #2a1c17 35%, #3d281f 65%, #221511 100%);
+                radial-gradient(ellipse at 50% 80%, rgba(180, 130, 80, 0.10), transparent 60%),
+                linear-gradient(180deg, #1a100d 0%, #2a1c17 35%, #3d281f 65%, #1a100d 100%);
         }
 
         .desk::after {
@@ -45,27 +38,19 @@
             position: absolute;
             inset: 0;
             background:
-                repeating-linear-gradient(90deg,
-                    rgba(75, 47, 33, 0.20) 0px,
-                    rgba(75, 47, 33, 0.20) 1px,
-                    transparent 1px,
-                    transparent 4px),
-                repeating-linear-gradient(0deg,
-                    rgba(60, 38, 27, 0.10) 0px,
-                    rgba(60, 38, 27, 0.10) 1px,
-                    transparent 1px,
-                    transparent 6px);
+                repeating-linear-gradient(90deg, rgba(75, 47, 33, 0.15) 0px, rgba(75, 47, 33, 0.15) 1px, transparent 1px, transparent 4px),
+                repeating-linear-gradient(0deg, rgba(60, 38, 27, 0.08) 0px, rgba(60, 38, 27, 0.08) 1px, transparent 1px, transparent 6px);
             pointer-events: none;
         }
 
-        /* ───────── WARM GLOW ───────── */
+        /* ─── CANDLE GLOW ─── */
         .glow {
             position: fixed;
             inset: 0;
             z-index: 0;
-            background: radial-gradient(ellipse at 50% 25%, rgba(255, 200, 130, 0.07), transparent 55%);
+            background: radial-gradient(ellipse at 50% 20%, rgba(255, 200, 130, 0.06), transparent 55%);
             pointer-events: none;
-            animation: glowPulse 5s ease-in-out infinite alternate;
+            animation: glowPulse 4s ease-in-out infinite alternate;
         }
 
         @keyframes glowPulse {
@@ -75,12 +60,12 @@
             }
             100% {
                 opacity: 1;
-                transform: scale(1.03);
+                transform: scale(1.04);
             }
         }
 
-        /* ───────── DUST PARTICLES ───────── */
-        #dust-container {
+        /* ─── DUST ─── */
+        #dust {
             position: fixed;
             inset: 0;
             pointer-events: none;
@@ -91,7 +76,7 @@
         .dust {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 220, 180, 0.4), transparent);
+            background: radial-gradient(circle, rgba(255, 220, 180, 0.35), transparent);
             animation: dustFloat linear infinite;
         }
 
@@ -100,10 +85,10 @@
                 transform: translate(0, 0) scale(1);
                 opacity: 0;
             }
-            10% {
+            15% {
                 opacity: 0.5;
             }
-            90% {
+            85% {
                 opacity: 0.5;
             }
             100% {
@@ -112,79 +97,63 @@
             }
         }
 
-        /* ───────── SCENE ───────── */
+        /* ─── SCENE ─── */
         .scene {
             position: relative;
             z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             width: 100%;
-            max-width: 700px;
-            min-height: 100vh;
-            padding: 20px 16px 60px;
+            max-width: 580px;
         }
 
-        /* ───────── ENVELOPE / LETTER CARD ───────── */
-        .letter-card {
+        /* ─── LETTER CARD ─── */
+        .card {
             position: relative;
             width: 100%;
-            max-width: 560px;
             aspect-ratio: 4 / 3;
-            background: linear-gradient(165deg, #f6ede2, #e6d8c8);
-            border-radius: 8px;
+            background: linear-gradient(165deg, #f6ede2, #e3d5c4);
+            border-radius: 10px;
             box-shadow:
                 0 40px 100px rgba(0, 0, 0, 0.7),
-                0 15px 40px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+                0 10px 30px rgba(0, 0, 0, 0.3);
             cursor: pointer;
-            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease;
-            transform-origin: center;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             overflow: hidden;
-            /* parchment texture overlay */
         }
 
-        .letter-card:hover {
+        .card:hover {
             transform: scale(1.015);
-            box-shadow: 0 50px 120px rgba(0, 0, 0, 0.8), 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
-        /* Paper Texture */
-        .letter-card::before {
+        /* Paper texture */
+        .card::before {
             content: '';
             position: absolute;
             inset: 0;
             background:
-                repeating-linear-gradient(0deg,
-                    transparent,
-                    transparent 28px,
-                    rgba(180, 160, 145, 0.04) 28px,
-                    rgba(180, 160, 145, 0.04) 29px),
-                repeating-linear-gradient(90deg,
-                    transparent,
-                    transparent 28px,
-                    rgba(180, 160, 145, 0.04) 28px,
-                    rgba(180, 160, 145, 0.04) 29px);
-            border-radius: 8px;
+                repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(160, 140, 125, 0.04) 28px, rgba(160, 140, 125, 0.04) 29px),
+                repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(160, 140, 125, 0.04) 28px, rgba(160, 140, 125, 0.04) 29px);
+            border-radius: 10px;
             pointer-events: none;
             z-index: 1;
         }
 
-        /* Burnt / Aged Edges */
+        /* Burnt edges */
         .burnt {
             position: absolute;
             pointer-events: none;
             z-index: 2;
-            opacity: 0.15;
+            opacity: 0.12;
         }
         .burnt-t {
             top: -2px;
-            left: 8%;
-            right: 8%;
+            left: 10%;
+            right: 10%;
             height: 10px;
             background: radial-gradient(ellipse at 30% 0%, #6b4a2e, transparent 60%);
-            filter: blur(1px);
+            filter: blur(1.5px);
         }
         .burnt-b {
             bottom: -2px;
@@ -192,15 +161,15 @@
             right: 12%;
             height: 10px;
             background: radial-gradient(ellipse at 70% 100%, #6b4a2e, transparent 60%);
-            filter: blur(1px);
+            filter: blur(1.5px);
         }
         .burnt-l {
             left: -2px;
-            top: 10%;
-            bottom: 10%;
+            top: 12%;
+            bottom: 12%;
             width: 10px;
             background: radial-gradient(ellipse at 0% 50%, #6b4a2e, transparent 60%);
-            filter: blur(1px);
+            filter: blur(1.5px);
         }
         .burnt-r {
             right: -2px;
@@ -208,61 +177,57 @@
             bottom: 15%;
             width: 10px;
             background: radial-gradient(ellipse at 100% 50%, #6b4a2e, transparent 60%);
-            filter: blur(1px);
+            filter: blur(1.5px);
         }
 
-        /* ───────── WATERMARK ───────── */
-        .watermark {
+        /* Watermark */
+        .wm {
             position: absolute;
-            right: 20px;
-            bottom: 20px;
+            right: 16px;
+            bottom: 16px;
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(70px, 18vw, 130px);
+            font-size: clamp(60px, 18vw, 120px);
             color: rgba(100, 70, 50, 0.05);
             pointer-events: none;
             z-index: 1;
             transform: rotate(-6deg);
         }
 
-        /* ───────── RIBBON ───────── */
+        /* ─── RIBBON ─── */
         .ribbon-wrap {
             position: absolute;
             inset: 0;
             pointer-events: none;
             z-index: 3;
+            border-radius: 10px;
             overflow: hidden;
-            border-radius: 8px;
         }
 
-        .ribbon {
-            position: absolute;
-            background: linear-gradient(170deg, #b02038, #7a1025, #5a0a1a);
-            opacity: 0.85;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-        }
-
-        /* Horizontal ribbon (crossing the letter) */
         .ribbon-h {
+            position: absolute;
             left: 0;
             top: 48%;
             width: 100%;
             height: clamp(6px, 1.4vw, 10px);
             transform: translateY(-50%);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(170deg, #b02038, #7a1025, #5a0a1a);
+            opacity: 0.85;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
         }
 
-        /* Vertical ribbon */
         .ribbon-v {
+            position: absolute;
             left: 48%;
             top: 0;
             width: clamp(6px, 1.4vw, 10px);
             height: 100%;
             transform: translateX(-50%);
+            background: linear-gradient(170deg, #b02038, #7a1025, #5a0a1a);
+            opacity: 0.85;
             box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* Ribbon bow accent (small decorative knot) */
-        .ribbon-bow {
+        .bow {
             position: absolute;
             left: 50%;
             top: 48%;
@@ -273,65 +238,62 @@
             background: radial-gradient(circle at 40% 35%, #c04058, #7a1025 60%, #4a0815);
             z-index: 5;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            pointer-events: none;
         }
 
-        .ribbon-bow::before,
-        .ribbon-bow::after {
+        .bow::before,
+        .bow::after {
             content: '';
             position: absolute;
-            width: clamp(18px, 3.5vw, 32px);
-            height: clamp(10px, 2vw, 18px);
-            background: linear-gradient(170deg, #b02038, #7a1025);
-            border-radius: 50% 50% 0 50%;
             top: 50%;
             transform: translateY(-50%);
+            width: clamp(16px, 3.5vw, 30px);
+            height: clamp(10px, 2vw, 16px);
+            background: linear-gradient(170deg, #b02038, #7a1025);
+            border-radius: 50% 50% 0 50%;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
-        .ribbon-bow::before {
-            left: -8px;
+        .bow::before {
+            left: -6px;
             transform: translateY(-50%) rotate(-20deg);
         }
-        .ribbon-bow::after {
-            right: -8px;
+        .bow::after {
+            right: -6px;
             transform: translateY(-50%) rotate(20deg) scaleX(-1);
         }
 
-        /* ───────── WAX SEAL ───────── */
+        /* ─── WAX SEAL ─── */
         .seal {
             position: absolute;
             left: 50%;
             bottom: clamp(18%, 22%, 28%);
             transform: translateX(-50%);
-            width: clamp(64px, 16vw, 96px);
-            height: clamp(64px, 16vw, 96px);
+            width: clamp(60px, 16vw, 90px);
+            height: clamp(60px, 16vw, 90px);
             border-radius: 50%;
             background: radial-gradient(circle at 38% 30%, #d45a72, #7d1025 55%, #4a0815);
             z-index: 6;
             box-shadow:
                 0 8px 35px rgba(0, 0, 0, 0.6),
                 inset 0 -6px 16px rgba(0, 0, 0, 0.3),
-                inset 0 6px 16px rgba(255, 200, 150, 0.15);
+                inset 0 6px 16px rgba(255, 200, 150, 0.12);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            pointer-events: auto;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .seal:hover {
             transform: translateX(-50%) scale(1.06);
-            box-shadow: 0 8px 45px rgba(0, 0, 0, 0.7), 0 0 40px rgba(200, 80, 60, 0.15);
         }
 
         .seal:active {
-            transform: translateX(-50%) scale(0.94);
+            transform: translateX(-50%) scale(0.92);
         }
 
         .seal-text {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(22px, 5.5vw, 38px);
+            font-size: clamp(20px, 5.5vw, 36px);
             color: #f6e7d1;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             letter-spacing: 2px;
@@ -358,7 +320,7 @@
             }
         }
 
-        /* ───────── FRONT TEXT ───────── */
+        /* ─── FRONT TEXT ─── */
         .front-text {
             position: absolute;
             inset: 0;
@@ -373,35 +335,33 @@
         }
 
         .front-text .for-label {
-            font-size: clamp(12px, 2.2vw, 18px);
+            font-size: clamp(11px, 2.2vw, 17px);
             letter-spacing: 12px;
             color: rgba(60, 40, 30, 0.35);
             font-weight: 600;
             text-transform: uppercase;
-            margin-bottom: 2px;
         }
 
         .front-text .name {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(38px, 10vw, 66px);
+            font-size: clamp(34px, 10vw, 62px);
             color: #3d2419;
-            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.08);
             line-height: 1.05;
             letter-spacing: 3px;
             margin: 4px 0;
         }
 
         .front-text .from-label {
-            font-size: clamp(11px, 2vw, 16px);
+            font-size: clamp(10px, 2vw, 15px);
             letter-spacing: 8px;
             color: rgba(60, 40, 30, 0.30);
             font-weight: 600;
             text-transform: uppercase;
-            margin-top: 2px;
         }
 
         .front-text .sub {
-            font-size: clamp(12px, 2vw, 16px);
+            font-size: clamp(11px, 2vw, 15px);
             color: rgba(60, 40, 30, 0.40);
             font-style: italic;
             margin-top: 6px;
@@ -409,16 +369,11 @@
             padding: 0 8px;
         }
 
-        .front-text .sub em {
-            font-style: italic;
-            color: rgba(60, 40, 30, 0.50);
-        }
-
-        /* ───────── TAP HINT ───────── */
-        .tap-hint {
-            margin-top: 20px;
+        /* ─── TAP HINT ─── */
+        .hint {
+            margin-top: 16px;
             font-size: clamp(14px, 2.2vw, 18px);
-            color: rgba(255, 220, 180, 0.45);
+            color: rgba(255, 220, 180, 0.4);
             letter-spacing: 3px;
             font-style: italic;
             animation: hintPulse 2.8s ease-in-out infinite;
@@ -437,96 +392,88 @@
             }
         }
 
-        /* ───────── OPEN STATE ───────── */
-        body.open .letter-card {
-            transform: scale(0.92) translateY(30px);
-            opacity: 0.3;
+        /* ─── OPEN STATE ─── */
+        body.open .card {
+            transform: scale(0.9) translateY(30px);
+            opacity: 0.25;
             pointer-events: none;
             transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        body.open .letter-card .seal {
+        body.open .card .seal {
             opacity: 0;
             transform: translateX(-50%) scale(0);
             transition: all 0.8s ease;
         }
 
-        body.open .letter-card .ribbon-wrap {
+        body.open .card .ribbon-wrap {
             opacity: 0;
             transition: opacity 0.6s ease;
         }
 
-        body.open .letter-card .front-text {
+        body.open .card .front-text {
             opacity: 0;
             transition: opacity 0.6s ease;
         }
 
-        body.open .letter-card .burnt {
+        body.open .card .burnt,
+        body.open .card .wm {
             opacity: 0;
             transition: opacity 0.6s ease;
         }
 
-        body.open .letter-card .watermark {
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-
-        body.open .letter-wrapper {
+        body.open .letter-wrap {
             opacity: 1;
             transform: translateY(0) scale(1);
             pointer-events: all;
             max-height: 3000px;
         }
 
-        body.open .tap-hint {
+        body.open .hint {
             opacity: 0;
             transform: translateY(-20px);
             transition: all 0.6s ease;
             pointer-events: none;
         }
 
-        /* ───────── LETTER WRAPPER (scroll reveal) ───────── */
-        .letter-wrapper {
+        /* ─── LETTER WRAPPER ─── */
+        .letter-wrap {
             position: relative;
             z-index: 3;
             width: 100%;
-            max-width: 620px;
             opacity: 0;
             transform: translateY(40px) scale(0.94);
             pointer-events: none;
-            margin-top: 20px;
+            margin-top: 16px;
             max-height: 0;
             overflow: hidden;
             transition: all 1.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        body.open .letter-wrapper {
+        body.open .letter-wrap {
             max-height: 3000px;
             opacity: 1;
             transform: translateY(0) scale(1);
             overflow: visible;
         }
 
-        /* ───────── THE LETTER (inside) ───────── */
+        /* ─── LETTER INNER ─── */
         .letter-inner {
             position: relative;
             background: linear-gradient(170deg, #faf3e8, #ede4d6);
-            padding: clamp(28px, 5vw, 50px);
-            padding-top: clamp(32px, 6vw, 55px);
+            padding: clamp(28px, 5vw, 48px);
+            padding-top: clamp(32px, 6vw, 52px);
             border-radius: 8px;
             box-shadow:
                 0 30px 80px rgba(0, 0, 0, 0.6),
-                0 10px 30px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                0 10px 30px rgba(0, 0, 0, 0.2);
             line-height: 1.9;
             color: #3f2a1d;
             font-size: clamp(16px, 2.5vw, 20px);
             width: 100%;
-            min-height: 320px;
-            overflow: visible;
         }
 
-        .letter-inner .paper-texture {
+        .letter-inner .paper-tex {
             position: absolute;
             inset: 0;
             pointer-events: none;
@@ -541,7 +488,7 @@
             pointer-events: none;
             opacity: 0.10;
         }
-        .burnt-inner.t {
+        .burnt-inner.bt {
             top: -2px;
             left: 10%;
             right: 10%;
@@ -549,7 +496,7 @@
             background: radial-gradient(ellipse at 30% 0%, #6b4a2e, transparent 60%);
             filter: blur(1px);
         }
-        .burnt-inner.b {
+        .burnt-inner.bb {
             bottom: -2px;
             left: 15%;
             right: 15%;
@@ -557,7 +504,7 @@
             background: radial-gradient(ellipse at 70% 100%, #6b4a2e, transparent 60%);
             filter: blur(1px);
         }
-        .burnt-inner.l {
+        .burnt-inner.bl {
             left: -2px;
             top: 10%;
             bottom: 10%;
@@ -565,7 +512,7 @@
             background: radial-gradient(ellipse at 0% 50%, #6b4a2e, transparent 60%);
             filter: blur(1px);
         }
-        .burnt-inner.r {
+        .burnt-inner.br {
             right: -2px;
             top: 20%;
             bottom: 20%;
@@ -574,10 +521,10 @@
             filter: blur(1px);
         }
 
-        .letter-inner .wm {
+        .letter-inner .wm-inner {
             position: absolute;
-            right: clamp(16px, 3vw, 30px);
-            bottom: clamp(16px, 3vw, 30px);
+            right: clamp(16px, 3vw, 28px);
+            bottom: clamp(16px, 3vw, 28px);
             font-family: 'Great Vibes', cursive;
             font-size: clamp(60px, 15vw, 110px);
             color: rgba(100, 70, 50, 0.04);
@@ -586,12 +533,12 @@
         }
 
         /* ─── LETTER CONTENT ─── */
-        .letter-content {
+        .content {
             position: relative;
             z-index: 2;
         }
 
-        .letter-content .date {
+        .content .date {
             text-align: right;
             font-size: clamp(13px, 2vw, 17px);
             color: rgba(60, 40, 30, 0.45);
@@ -600,24 +547,24 @@
             margin-bottom: 14px;
         }
 
-        .letter-content .drop-cap {
+        .content .drop-cap {
             float: left;
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(48px, 12vw, 78px);
-            line-height: 0.8;
+            font-size: clamp(48px, 12vw, 76px);
+            line-height: 0.75;
             color: #8b1a2b;
             margin-right: 4px;
-            margin-top: -2px;
+            margin-top: 2px;
         }
 
-        .letter-content .first-line {
+        .content .first-line {
             font-size: clamp(17px, 3vw, 22px);
             font-weight: 600;
             color: #3d2419;
             margin-bottom: 12px;
         }
 
-        .letter-content p {
+        .content p {
             margin-bottom: 12px;
             text-indent: 20px;
             font-weight: 400;
@@ -625,26 +572,26 @@
             animation: fadeUp 0.7s forwards;
         }
 
-        .letter-content p:nth-of-type(1) {
+        .content p:nth-of-type(1) {
             animation-delay: 0.5s;
         }
-        .letter-content p:nth-of-type(2) {
+        .content p:nth-of-type(2) {
             animation-delay: 0.7s;
         }
-        .letter-content p:nth-of-type(3) {
+        .content p:nth-of-type(3) {
             animation-delay: 0.9s;
         }
-        .letter-content p:nth-of-type(4) {
+        .content p:nth-of-type(4) {
             animation-delay: 1.1s;
         }
-        .letter-content p:nth-of-type(5) {
+        .content p:nth-of-type(5) {
             animation-delay: 1.3s;
         }
-        .letter-content p:nth-of-type(6) {
+        .content p:nth-of-type(6) {
             animation-delay: 1.5s;
         }
 
-        .letter-content .promise-box {
+        .content .promise-box {
             opacity: 0;
             animation: fadeUp 0.7s 0.9s forwards;
             background: rgba(200, 180, 165, 0.10);
@@ -656,7 +603,7 @@
             text-align: center;
         }
 
-        .letter-content .promise-box .pline {
+        .content .promise-box .pline {
             font-size: clamp(16px, 2.5vw, 20px);
             font-weight: 600;
             color: #61252d;
@@ -664,11 +611,11 @@
             margin-bottom: 2px;
         }
 
-        .letter-content .promise-box .pline strong {
+        .content .promise-box .pline strong {
             color: #8b1a2b;
         }
 
-        .letter-content .promise-box .psub {
+        .content .promise-box .psub {
             font-style: italic;
             font-size: clamp(14px, 2vw, 17px);
             color: rgba(60, 40, 30, 0.55);
@@ -676,34 +623,34 @@
             margin-bottom: 0;
         }
 
-        .letter-content .signature {
+        .content .signature {
             margin-top: 24px;
             text-align: right;
             opacity: 0;
             animation: fadeUp 0.7s 1.7s forwards;
         }
 
-        .letter-content .signature .sig-label {
+        .content .signature .sig-label {
             display: block;
             font-size: clamp(15px, 2vw, 18px);
             color: rgba(60, 40, 30, 0.45);
             letter-spacing: 2px;
         }
 
-        .letter-content .signature .sig-name {
+        .content .signature .sig-name {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(34px, 8vw, 54px);
+            font-size: clamp(34px, 8vw, 52px);
             color: #3d2419;
             display: block;
             margin-top: -6px;
         }
 
-        .letter-content .heart-divider {
+        .content .heart-divider {
             text-align: center;
             font-size: clamp(18px, 3vw, 26px);
             color: #a02030;
             margin-top: 20px;
-            opacity: 0.5;
+            opacity: 0.4;
             opacity: 0;
             animation: fadeUp 0.7s 1.9s forwards;
         }
@@ -720,21 +667,21 @@
         }
 
         /* ─── NAV ─── */
-        .letter-nav {
+        .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 18px;
             padding-top: 14px;
             border-top: 1px solid rgba(60, 40, 30, 0.08);
             flex-wrap: wrap;
             gap: 10px;
         }
 
-        .letter-nav .nav-btn {
+        .nav .btn {
             background: rgba(60, 40, 30, 0.07);
             border: none;
-            padding: 8px 24px;
+            padding: 8px 22px;
             border-radius: 30px;
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(14px, 2vw, 17px);
@@ -744,23 +691,23 @@
             letter-spacing: 1px;
         }
 
-        .letter-nav .nav-btn:hover {
+        .nav .btn:hover {
             background: rgba(60, 40, 30, 0.15);
             transform: scale(1.04);
         }
 
-        .letter-nav .nav-btn:active {
+        .nav .btn:active {
             transform: scale(0.96);
         }
 
-        .letter-nav .nav-hint {
+        .nav .hint-text {
             font-size: clamp(13px, 1.8vw, 15px);
             color: rgba(60, 40, 30, 0.30);
             font-style: italic;
         }
 
         /* ─── HEART BURST ─── */
-        #heart-burst {
+        #burst {
             position: fixed;
             inset: 0;
             pointer-events: none;
@@ -786,14 +733,14 @@
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 540px) {
-            .letter-card {
-                max-width: 420px;
+            .card {
+                aspect-ratio: 4 / 3.2;
             }
             .front-text .name {
-                font-size: 32px;
+                font-size: 30px;
             }
             .front-text .for-label {
-                font-size: 11px;
+                font-size: 10px;
                 letter-spacing: 8px;
             }
             .front-text .from-label {
@@ -801,30 +748,30 @@
                 letter-spacing: 6px;
             }
             .front-text .sub {
-                font-size: 11px;
+                font-size: 10px;
             }
             .seal {
-                width: 56px;
-                height: 56px;
+                width: 52px;
+                height: 52px;
                 bottom: 20%;
             }
             .seal-text {
-                font-size: 20px;
+                font-size: 18px;
             }
-            .ribbon-bow {
-                width: 28px;
-                height: 28px;
+            .bow {
+                width: 26px;
+                height: 26px;
             }
-            .ribbon-bow::before,
-            .ribbon-bow::after {
-                width: 16px;
-                height: 10px;
+            .bow::before,
+            .bow::after {
+                width: 14px;
+                height: 9px;
             }
-            .ribbon-bow::before {
-                left: -6px;
+            .bow::before {
+                left: -5px;
             }
-            .ribbon-bow::after {
-                right: -6px;
+            .bow::after {
+                right: -5px;
             }
             .ribbon-h {
                 height: 5px;
@@ -833,70 +780,70 @@
                 width: 5px;
             }
             .letter-inner {
-                padding: 20px 16px;
+                padding: 18px 14px;
                 font-size: 15px;
             }
-            .letter-content p {
+            .content p {
                 text-indent: 14px;
             }
-            .letter-content .drop-cap {
-                font-size: 42px;
+            .content .drop-cap {
+                font-size: 40px;
             }
-            .letter-content .first-line {
+            .content .first-line {
                 font-size: 16px;
             }
-            .letter-content .signature .sig-name {
-                font-size: 32px;
+            .content .signature .sig-name {
+                font-size: 30px;
             }
-            .letter-nav {
+            .nav {
                 flex-direction: column;
                 align-items: center;
             }
-            .tap-hint {
+            .hint {
                 font-size: 13px;
             }
         }
 
         @media (max-width: 400px) {
-            .letter-card {
-                max-width: 340px;
+            .card {
+                aspect-ratio: 4 / 3.4;
             }
             .front-text .name {
-                font-size: 26px;
+                font-size: 24px;
             }
             .seal {
-                width: 46px;
-                height: 46px;
+                width: 42px;
+                height: 42px;
                 bottom: 18%;
             }
             .seal-text {
-                font-size: 16px;
+                font-size: 14px;
             }
             .front-text .for-label {
-                font-size: 10px;
+                font-size: 9px;
                 letter-spacing: 6px;
             }
             .front-text .from-label {
-                font-size: 9px;
+                font-size: 8px;
                 letter-spacing: 5px;
             }
             .front-text .sub {
-                font-size: 10px;
+                font-size: 9px;
             }
-            .ribbon-bow {
-                width: 22px;
-                height: 22px;
+            .bow {
+                width: 20px;
+                height: 20px;
             }
-            .ribbon-bow::before,
-            .ribbon-bow::after {
-                width: 12px;
-                height: 8px;
+            .bow::before,
+            .bow::after {
+                width: 11px;
+                height: 7px;
             }
-            .ribbon-bow::before {
-                left: -5px;
+            .bow::before {
+                left: -4px;
             }
-            .ribbon-bow::after {
-                right: -5px;
+            .bow::after {
+                right: -4px;
             }
             .ribbon-h {
                 height: 4px;
@@ -905,23 +852,23 @@
                 width: 4px;
             }
             .letter-inner {
-                padding: 16px 12px;
+                padding: 14px 10px;
+                font-size: 13px;
+            }
+            .content .drop-cap {
+                font-size: 32px;
+            }
+            .content .first-line {
                 font-size: 14px;
             }
-            .letter-content .drop-cap {
-                font-size: 34px;
-            }
-            .letter-content .first-line {
-                font-size: 14px;
-            }
-            .letter-content .signature .sig-name {
-                font-size: 26px;
+            .content .signature .sig-name {
+                font-size: 24px;
             }
         }
 
-        /* ─── SCROLLBAR ─── */
+        /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 4px;
+            width: 3px;
         }
         ::-webkit-scrollbar-track {
             background: rgba(60, 40, 30, 0.05);
@@ -934,36 +881,36 @@
 </head>
 <body>
 
-    <!-- Desk Background -->
+    <!-- Background -->
     <div class="desk"></div>
     <div class="glow"></div>
 
-    <!-- Dust Particles -->
-    <div id="dust-container"></div>
+    <!-- Dust -->
+    <div id="dust"></div>
 
-    <!-- Heart Burst Container -->
-    <div id="heart-burst"></div>
+    <!-- Heart Burst -->
+    <div id="burst"></div>
 
-    <!-- Main Scene -->
+    <!-- Main -->
     <div class="scene">
 
-        <!-- LETTER CARD (like the image) -->
-        <div class="letter-card" id="letterCard" onclick="openLetter()">
+        <!-- CARD -->
+        <div class="card" id="card" onclick="openLetter()">
 
-            <!-- Burnt Edges -->
+            <!-- Burnt edges -->
             <div class="burnt burnt-t"></div>
             <div class="burnt burnt-b"></div>
             <div class="burnt burnt-l"></div>
             <div class="burnt burnt-r"></div>
 
             <!-- Watermark -->
-            <div class="watermark">TS</div>
+            <div class="wm">TS</div>
 
             <!-- Ribbon -->
             <div class="ribbon-wrap">
-                <div class="ribbon ribbon-h"></div>
-                <div class="ribbon ribbon-v"></div>
-                <div class="ribbon-bow"></div>
+                <div class="ribbon-h"></div>
+                <div class="ribbon-v"></div>
+                <div class="bow"></div>
             </div>
 
             <!-- Wax Seal -->
@@ -981,20 +928,22 @@
             </div>
         </div>
 
-        <!-- Tap Hint -->
-        <div class="tap-hint">✦ tap the seal to open ✦</div>
+        <!-- Hint -->
+        <div class="hint">✦ tap the seal to open ✦</div>
 
-        <!-- LETTER (hidden until opened) -->
-        <div class="letter-wrapper" id="letterWrapper">
+        <!-- LETTER -->
+        <div class="letter-wrap" id="letterWrap">
             <div class="letter-inner" id="letterInner">
-                <div class="paper-texture"></div>
-                <div class="burnt-inner t"></div>
-                <div class="burnt-inner b"></div>
-                <div class="burnt-inner l"></div>
-                <div class="burnt-inner r"></div>
-                <div class="wm">TS</div>
 
-                <div class="letter-content">
+                <div class="paper-tex"></div>
+                <div class="burnt-inner bt"></div>
+                <div class="burnt-inner bb"></div>
+                <div class="burnt-inner bl"></div>
+                <div class="burnt-inner br"></div>
+                <div class="wm-inner">TS</div>
+
+                <div class="content">
+
                     <div class="date">🌹 5 August 2026 🌹</div>
 
                     <span class="drop-cap">M</span>
@@ -1020,18 +969,18 @@
                     <div class="heart-divider">❤️‍🔥 ✦ ❤️‍🔥 ✦ ❤️‍🔥</div>
                 </div>
 
-                <div class="letter-nav">
-                    <button class="nav-btn" onclick="event.stopPropagation(); closeLetter();">✕ Close</button>
-                    <span class="nav-hint">👇 scroll to read more</span>
+                <div class="nav">
+                    <button class="btn" onclick="event.stopPropagation(); closeLetter();">✕ Close</button>
+                    <span class="hint-text">👇 scroll to read more</span>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // ─── DUST PARTICLES ───
+        // ─── DUST ───
         (function() {
-            const container = document.getElementById('dust-container');
+            const c = document.getElementById('dust');
             for (let i = 0; i < 30; i++) {
                 const d = document.createElement('div');
                 d.className = 'dust';
@@ -1044,13 +993,13 @@
                 const del = Math.random() * 16;
                 d.style.cssText =
                     `left:${x}%;top:${y}%;width:${s}px;height:${s}px;--dx:${dx}px;--dy:${dy}px;animation-duration:${dur}s;animation-delay:${del}s;`;
-                container.appendChild(d);
+                c.appendChild(d);
             }
         })();
 
         // ─── HEART BURST ───
         function burstHearts() {
-            const container = document.getElementById('heart-burst');
+            const c = document.getElementById('burst');
             const emojis = ['❤️', '💕', '💖', '✨', '🌹', '💗', '❤️‍🔥'];
             const cx = window.innerWidth / 2;
             const cy = window.innerHeight / 2;
@@ -1064,8 +1013,8 @@
                 const xOff = (Math.random() - 0.5) * 120;
                 const yOff = (Math.random() - 0.5) * 80;
                 el.style.cssText =
-                    `left:${cx + xOff}px;top:${cy + yOff}px;font-size:${size}px;--tx:${tx}px;--ty:${ty}px;animation-duration:${1.2 + Math.random() * 0.8}s;`;
-                container.appendChild(el);
+                    `left:${cx+xOff}px;top:${cy+yOff}px;font-size:${size}px;--tx:${tx}px;--ty:${ty}px;animation-duration:${1.2+Math.random()*0.8}s;`;
+                c.appendChild(el);
                 setTimeout(() => el.remove(), 2500);
             }
         }
@@ -1076,8 +1025,7 @@
             burstHearts();
             if (navigator.vibrate) navigator.vibrate(12);
             setTimeout(() => {
-                const w = document.getElementById('letterWrapper');
-                if (w) w.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.getElementById('letterWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 900);
         }
 
@@ -1085,7 +1033,7 @@
         function closeLetter() {
             document.body.classList.remove('open');
             setTimeout(() => {
-                const card = document.getElementById('letterCard');
+                const card = document.getElementById('card');
                 if (card) {
                     card.style.transition = 'none';
                     card.style.transform = '';
@@ -1103,13 +1051,13 @@
             }
         });
 
-        // ─── PARALLAX (desktop) ───
+        // ─── PARALLAX ───
         let isDesktop = window.innerWidth > 768;
         window.addEventListener('resize', () => { isDesktop = window.innerWidth > 768; });
 
         document.addEventListener('mousemove', (e) => {
             if (!isDesktop) return;
-            const card = document.getElementById('letterCard');
+            const card = document.getElementById('card');
             if (!card || document.body.classList.contains('open')) return;
             const rect = card.getBoundingClientRect();
             const cx = rect.left + rect.width / 2;
@@ -1118,15 +1066,15 @@
             const dy = (e.clientY - cy) / rect.height;
             const max = 8;
             card.style.transform =
-                `perspective(800px) rotateX(${-dy * max}deg) rotateY(${dx * max}deg) scale(1.015)`;
+                `perspective(800px) rotateX(${-dy*max}deg) rotateY(${dx*max}deg) scale(1.015)`;
         });
 
         document.addEventListener('mouseleave', () => {
-            const card = document.getElementById('letterCard');
+            const card = document.getElementById('card');
             if (card) card.style.removeProperty('transform');
         });
 
-        // ─── BREATHING LETTER ───
+        // ─── BREATHING ───
         const inner = document.getElementById('letterInner');
         if (inner) {
             let phase = 0;
@@ -1141,10 +1089,10 @@
 
         // ─── SCROLL HINT ───
         document.addEventListener('scroll', () => {
-            const hint = document.querySelector('.nav-hint');
-            if (!hint) return;
+            const h = document.querySelector('.nav .hint-text');
+            if (!h) return;
             const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            hint.style.opacity = pct > 0.12 ? '0' : '1';
+            h.style.opacity = pct > 0.12 ? '0' : '1';
         });
 
         // ─── CONSOLE ───
