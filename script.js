@@ -66,9 +66,8 @@ function burstHearts(e) {
 
     const emojis = ['❤️', '💕', '💖', '✨', '🌟', '🌹'];
     
-    // Determine center source of burst (click position or screen center)
-    const centerX = e ? e.clientX : window.innerWidth / 2;
-    const centerY = e ? e.clientY : window.innerHeight / 2;
+    const centerX = e && e.clientX ? e.clientX : window.innerWidth / 2;
+    const centerY = e && e.clientY ? e.clientY : window.innerHeight / 2;
 
     for (let i = 0; i < 30; i++) {
         const heart = document.createElement('div');
@@ -103,14 +102,12 @@ function openEnvelope(e) {
 
     if (navigator.vibrate) navigator.vibrate(15);
 
-    // Auto-scroll to letter smoothly
     setTimeout(() => {
-        const wrapper = document.getElementById('letter-wrapper') || document.getElementById('letterWrapper');
+        const wrapper = document.getElementById('letterWrapper') || document.getElementById('letter-wrapper');
         if (wrapper) wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 800);
 }
 
-// Alias for openLetter calls
 const openLetter = openEnvelope;
 
 // ─── CLOSE ENVELOPE / LETTER ───
@@ -120,7 +117,7 @@ function closeEnvelope() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     setTimeout(() => {
-        const wrap = document.getElementById('envelope') || document.getElementById('envelopeWrapper');
+        const wrap = document.getElementById('envelopeWrapper') || document.getElementById('envelope');
         if (wrap) {
             wrap.style.transition = 'none';
             wrap.style.transform = '';
@@ -129,7 +126,6 @@ function closeEnvelope() {
     }, 300);
 }
 
-// Alias for closeLetter calls
 const closeLetter = closeEnvelope;
 
 // ─── KEYBOARD NAVIGATION ───
@@ -167,7 +163,7 @@ document.addEventListener('mouseleave', () => {
 });
 
 // ─── BREATHING LETTER EFFECT ───
-const letterEl = document.querySelector('.letter') || document.getElementById('letter');
+const letterEl = document.getElementById('letter') || document.querySelector('.letter');
 if (letterEl) {
     let phase = 0;
     setInterval(() => {
