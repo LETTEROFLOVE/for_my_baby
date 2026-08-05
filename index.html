@@ -1,886 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>💌 For Tanisha ❤️ From Sanyam</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Cormorant Garamond', serif;
-            background: #120d0b;
-            padding: 16px;
-            overflow-x: hidden;
-        }
-
-        /* ─── WOODEN DESK ─── */
-        .desk {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            background:
-                radial-gradient(ellipse at 50% 80%, rgba(180, 130, 80, 0.10), transparent 60%),
-                linear-gradient(180deg, #1a100d 0%, #2a1c17 35%, #3d281f 65%, #1a100d 100%);
-        }
-
-        .desk::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                repeating-linear-gradient(90deg, rgba(75, 47, 33, 0.12) 0px, rgba(75, 47, 33, 0.12) 1px, transparent 1px, transparent 4px),
-                repeating-linear-gradient(0deg, rgba(60, 38, 27, 0.06) 0px, rgba(60, 38, 27, 0.06) 1px, transparent 1px, transparent 6px);
-            pointer-events: none;
-        }
-
-        /* ─── CANDLE GLOW ─── */
-        .glow {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            background: radial-gradient(ellipse at 50% 20%, rgba(255, 200, 130, 0.08), transparent 55%);
-            pointer-events: none;
-            animation: glowPulse 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes glowPulse {
-            0% { opacity: 0.5; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.04); }
-        }
-
-        /* ─── DUST ─── */
-        #dust {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .dust {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 220, 180, 0.3), transparent);
-            animation: dustFloat linear infinite;
-        }
-
-        @keyframes dustFloat {
-            0% { transform: translate(0, 0) scale(1); opacity: 0; }
-            15% { opacity: 0.5; }
-            85% { opacity: 0.5; }
-            100% { transform: translate(var(--dx), var(--dy)) scale(0.2); opacity: 0; }
-        }
-
-        /* ─── SCENE ─── */
-        .scene {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 520px;
-        }
-
-        /* ─── CARD ─── */
-        .card {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 4 / 3.2;
-            background: linear-gradient(165deg, #f6ede2, #e3d5c4);
-            border-radius: 10px;
-            box-shadow:
-                0 40px 100px rgba(0, 0, 0, 0.7),
-                0 10px 30px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: scale(1.015);
-        }
-
-        /* Paper texture */
-        .card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(160, 140, 125, 0.05) 28px, rgba(160, 140, 125, 0.05) 29px),
-                repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(160, 140, 125, 0.05) 28px, rgba(160, 140, 125, 0.05) 29px);
-            border-radius: 10px;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* ─── BURNT EDGES ─── */
-        .burnt {
-            position: absolute;
-            pointer-events: none;
-            z-index: 2;
-            opacity: 0.15;
-        }
-        .burnt-t { top: -2px; left: 8%; right: 8%; height: 10px; background: radial-gradient(ellipse at 30% 0%, #6b4a2e, transparent 60%); filter: blur(1.5px); }
-        .burnt-b { bottom: -2px; left: 12%; right: 12%; height: 10px; background: radial-gradient(ellipse at 70% 100%, #6b4a2e, transparent 60%); filter: blur(1.5px); }
-        .burnt-l { left: -2px; top: 12%; bottom: 12%; width: 10px; background: radial-gradient(ellipse at 0% 50%, #6b4a2e, transparent 60%); filter: blur(1.5px); }
-        .burnt-r { right: -2px; top: 15%; bottom: 15%; width: 10px; background: radial-gradient(ellipse at 100% 50%, #6b4a2e, transparent 60%); filter: blur(1.5px); }
-
-        /* ─── WATERMARK ─── */
-        .wm {
-            position: absolute;
-            right: 12px;
-            bottom: 12px;
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(50px, 15vw, 90px);
-            color: rgba(100, 70, 50, 0.05);
-            pointer-events: none;
-            z-index: 1;
-            transform: rotate(-6deg);
-        }
-
-        /* ─── RIBBON ─── */
-        .ribbon-wrap {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 3;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .ribbon-h {
-            position: absolute;
-            left: 0;
-            top: 48%;
-            width: 100%;
-            height: clamp(5px, 1.2vw, 8px);
-            transform: translateY(-50%);
-            background: linear-gradient(170deg, #b02038, #7a1025, #5a0a1a);
-            opacity: 0.85;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-        }
-
-        .ribbon-v {
-            position: absolute;
-            left: 48%;
-            top: 0;
-            width: clamp(5px, 1.2vw, 8px);
-            height: 100%;
-            transform: translateX(-50%);
-            background: linear-gradient(170deg, #b02038, #7a1025, #5a0a1a);
-            opacity: 0.85;
-            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .bow {
-            position: absolute;
-            left: 50%;
-            top: 48%;
-            transform: translate(-50%, -50%);
-            width: clamp(24px, 4.5vw, 38px);
-            height: clamp(24px, 4.5vw, 38px);
-            border-radius: 50%;
-            background: radial-gradient(circle at 40% 35%, #c04058, #7a1025 60%, #4a0815);
-            z-index: 5;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .bow::before,
-        .bow::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: clamp(14px, 3vw, 24px);
-            height: clamp(8px, 1.6vw, 14px);
-            background: linear-gradient(170deg, #b02038, #7a1025);
-            border-radius: 50% 50% 0 50%;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-        .bow::before {
-            left: -5px;
-            transform: translateY(-50%) rotate(-20deg);
-        }
-        .bow::after {
-            right: -5px;
-            transform: translateY(-50%) rotate(20deg) scaleX(-1);
-        }
-
-        /* ─── WAX SEAL ─── */
-        .seal {
-            position: absolute;
-            left: 50%;
-            bottom: clamp(16%, 20%, 24%);
-            transform: translateX(-50%);
-            width: clamp(50px, 14vw, 76px);
-            height: clamp(50px, 14vw, 76px);
-            border-radius: 50%;
-            background: radial-gradient(circle at 38% 30%, #d45a72, #7d1025 55%, #4a0815);
-            z-index: 6;
-            box-shadow:
-                0 8px 35px rgba(0, 0, 0, 0.6),
-                inset 0 -6px 16px rgba(0, 0, 0, 0.3),
-                inset 0 6px 16px rgba(255, 200, 150, 0.12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .seal:hover {
-            transform: translateX(-50%) scale(1.06);
-        }
-
-        .seal:active {
-            transform: translateX(-50%) scale(0.92);
-        }
-
-        .seal-text {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(18px, 5vw, 32px);
-            color: #f6e7d1;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            letter-spacing: 2px;
-            transform: rotate(-6deg);
-        }
-
-        .seal-glow {
-            position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 40% 30%, rgba(255, 200, 100, 0.12), transparent 70%);
-            animation: sealPulse 3.5s ease-in-out infinite alternate;
-            pointer-events: none;
-        }
-
-        @keyframes sealPulse {
-            0% { transform: scale(1); opacity: 0.3; }
-            100% { transform: scale(1.15); opacity: 0.7; }
-        }
-
-        /* ─── FRONT TEXT ─── */
-        .front-text {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 4;
-            pointer-events: none;
-            padding: 8% 10%;
-            text-align: center;
-        }
-
-        .front-text .for-label {
-            font-size: clamp(10px, 2vw, 15px);
-            letter-spacing: 12px;
-            color: rgba(60, 40, 30, 0.40);
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 2px;
-        }
-
-        .front-text .name {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(32px, 10vw, 58px);
-            color: #3d2419;
-            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.08);
-            line-height: 1.05;
-            letter-spacing: 3px;
-            margin: 2px 0;
-        }
-
-        .front-text .from-label {
-            font-size: clamp(9px, 1.8vw, 14px);
-            letter-spacing: 8px;
-            color: rgba(60, 40, 30, 0.35);
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-top: 2px;
-        }
-
-        .front-text .sub {
-            font-size: clamp(10px, 1.8vw, 14px);
-            color: rgba(60, 40, 30, 0.45);
-            font-style: italic;
-            margin-top: 6px;
-            letter-spacing: 0.5px;
-            padding: 0 8px;
-            line-height: 1.3;
-        }
-
-        /* ─── TAP HINT ─── */
-        .hint {
-            margin-top: 16px;
-            font-size: clamp(13px, 2vw, 17px);
-            color: rgba(255, 220, 180, 0.4);
-            letter-spacing: 2px;
-            font-style: italic;
-            animation: hintPulse 2.8s ease-in-out infinite;
-            text-align: center;
-        }
-
-        @keyframes hintPulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.9; transform: scale(1.04); }
-        }
-
-        /* ─── OPEN STATE ─── */
-        body.open .card {
-            transform: scale(0.85) translateY(30px);
-            opacity: 0.15;
-            pointer-events: none;
-            transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        body.open .card .seal {
-            opacity: 0;
-            transform: translateX(-50%) scale(0);
-            transition: all 0.8s ease;
-        }
-
-        body.open .card .ribbon-wrap {
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-
-        body.open .card .front-text {
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-
-        body.open .card .burnt,
-        body.open .card .wm {
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-
-        body.open .letter-wrap {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: all;
-            max-height: 3000px;
-        }
-
-        body.open .hint {
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: all 0.6s ease;
-            pointer-events: none;
-        }
-
-        /* ─── LETTER WRAPPER ─── */
-        .letter-wrap {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-            opacity: 0;
-            transform: translateY(40px) scale(0.94);
-            pointer-events: none;
-            margin-top: 16px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 1.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        body.open .letter-wrap {
-            max-height: 3000px;
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            overflow: visible;
-        }
-
-        /* ─── LETTER INNER ─── */
-        .letter-inner {
-            position: relative;
-            background: linear-gradient(170deg, #faf3e8, #ede4d6);
-            padding: clamp(24px, 4.5vw, 44px);
-            padding-top: clamp(28px, 5vw, 48px);
-            border-radius: 8px;
-            box-shadow:
-                0 30px 80px rgba(0, 0, 0, 0.6),
-                0 10px 30px rgba(0, 0, 0, 0.2);
-            line-height: 1.9;
-            color: #3f2a1d;
-            font-size: clamp(15px, 2.2vw, 19px);
-            width: 100%;
-        }
-
-        .letter-inner .paper-tex {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background:
-                repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(180, 160, 145, 0.04) 30px, rgba(180, 160, 145, 0.04) 31px),
-                repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(180, 160, 145, 0.04) 30px, rgba(180, 160, 145, 0.04) 31px);
-            border-radius: 8px;
-        }
-
-        .letter-inner .burnt-inner {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0.10;
-        }
-        .burnt-inner.bt { top: -2px; left: 10%; right: 10%; height: 8px; background: radial-gradient(ellipse at 30% 0%, #6b4a2e, transparent 60%); filter: blur(1px); }
-        .burnt-inner.bb { bottom: -2px; left: 15%; right: 15%; height: 8px; background: radial-gradient(ellipse at 70% 100%, #6b4a2e, transparent 60%); filter: blur(1px); }
-        .burnt-inner.bl { left: -2px; top: 10%; bottom: 10%; width: 8px; background: radial-gradient(ellipse at 0% 50%, #6b4a2e, transparent 60%); filter: blur(1px); }
-        .burnt-inner.br { right: -2px; top: 20%; bottom: 20%; width: 8px; background: radial-gradient(ellipse at 100% 50%, #6b4a2e, transparent 60%); filter: blur(1px); }
-
-        .letter-inner .wm-inner {
-            position: absolute;
-            right: clamp(12px, 2.5vw, 24px);
-            bottom: clamp(12px, 2.5vw, 24px);
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(50px, 13vw, 100px);
-            color: rgba(100, 70, 50, 0.04);
-            pointer-events: none;
-            transform: rotate(-6deg);
-        }
-
-        /* ─── LETTER CONTENT ─── */
-        .content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .content .date {
-            text-align: right;
-            font-size: clamp(12px, 1.8vw, 16px);
-            color: rgba(60, 40, 30, 0.45);
-            letter-spacing: 2px;
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
-
-        .content .drop-cap {
-            float: left;
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(42px, 10vw, 68px);
-            line-height: 0.75;
-            color: #8b1a2b;
-            margin-right: 4px;
-            margin-top: 2px;
-        }
-
-        .content .first-line {
-            font-size: clamp(16px, 2.6vw, 21px);
-            font-weight: 600;
-            color: #3d2419;
-            margin-bottom: 10px;
-        }
-
-        .content p {
-            margin-bottom: 10px;
-            text-indent: 18px;
-            font-weight: 400;
-            opacity: 0;
-            animation: fadeUp 0.6s forwards;
-        }
-
-        .content p:nth-of-type(1) { animation-delay: 0.5s; }
-        .content p:nth-of-type(2) { animation-delay: 0.7s; }
-        .content p:nth-of-type(3) { animation-delay: 0.9s; }
-        .content p:nth-of-type(4) { animation-delay: 1.1s; }
-        .content p:nth-of-type(5) { animation-delay: 1.3s; }
-        .content p:nth-of-type(6) { animation-delay: 1.5s; }
-
-        .content .promise-box {
-            opacity: 0;
-            animation: fadeUp 0.6s 0.9s forwards;
-            background: rgba(200, 180, 165, 0.10);
-            border-left: 4px solid #a02030;
-            border-right: 4px solid #a02030;
-            padding: clamp(10px, 1.8vw, 18px);
-            margin: 14px 0 10px;
-            border-radius: 4px;
-            text-align: center;
-        }
-
-        .content .promise-box .pline {
-            font-size: clamp(15px, 2.2vw, 19px);
-            font-weight: 600;
-            color: #61252d;
-            text-indent: 0 !important;
-            margin-bottom: 2px;
-        }
-
-        .content .promise-box .pline strong {
-            color: #8b1a2b;
-        }
-
-        .content .promise-box .psub {
-            font-style: italic;
-            font-size: clamp(13px, 1.8vw, 16px);
-            color: rgba(60, 40, 30, 0.55);
-            text-indent: 0 !important;
-            margin-bottom: 0;
-        }
-
-        .content .signature {
-            margin-top: 22px;
-            text-align: right;
-            opacity: 0;
-            animation: fadeUp 0.6s 1.7s forwards;
-        }
-
-        .content .signature .sig-label {
-            display: block;
-            font-size: clamp(14px, 1.8vw, 17px);
-            color: rgba(60, 40, 30, 0.45);
-            letter-spacing: 2px;
-        }
-
-        .content .signature .sig-name {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(32px, 7vw, 48px);
-            color: #3d2419;
-            display: block;
-            margin-top: -6px;
-        }
-
-        .content .heart-divider {
-            text-align: center;
-            font-size: clamp(16px, 2.5vw, 24px);
-            color: #a02030;
-            margin-top: 18px;
-            opacity: 0.4;
-            opacity: 0;
-            animation: fadeUp 0.6s 1.9s forwards;
-        }
-
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(12px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ─── NAV ─── */
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 16px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(60, 40, 30, 0.08);
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .nav .btn {
-            background: rgba(60, 40, 30, 0.07);
-            border: none;
-            padding: 7px 20px;
-            border-radius: 30px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(13px, 1.8vw, 16px);
-            color: #3d2419;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-        }
-
-        .nav .btn:hover {
-            background: rgba(60, 40, 30, 0.15);
-            transform: scale(1.04);
-        }
-
-        .nav .btn:active {
-            transform: scale(0.96);
-        }
-
-        .nav .hint-text {
-            font-size: clamp(12px, 1.6vw, 14px);
-            color: rgba(60, 40, 30, 0.30);
-            font-style: italic;
-        }
-
-        /* ─── HEART BURST ─── */
-        #burst {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        .burst-heart {
-            position: absolute;
-            animation: burstFly 1.6s ease-out forwards;
-            font-size: 26px;
-        }
-
-        @keyframes burstFly {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-            100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(720deg); opacity: 0; }
-        }
-
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 480px) {
-            .card { aspect-ratio: 4 / 3.4; }
-            .front-text .name { font-size: 28px; }
-            .front-text .for-label { font-size: 9px; letter-spacing: 8px; }
-            .front-text .from-label { font-size: 8px; letter-spacing: 6px; }
-            .front-text .sub { font-size: 9px; }
-            .seal { width: 46px; height: 46px; bottom: 18%; }
-            .seal-text { font-size: 16px; }
-            .bow { width: 20px; height: 20px; }
-            .bow::before, .bow::after { width: 12px; height: 7px; }
-            .bow::before { left: -4px; }
-            .bow::after { right: -4px; }
-            .ribbon-h { height: 4px; }
-            .ribbon-v { width: 4px; }
-            .letter-inner { padding: 16px 12px; font-size: 14px; }
-            .content p { text-indent: 12px; }
-            .content .drop-cap { font-size: 36px; }
-            .content .first-line { font-size: 14px; }
-            .content .signature .sig-name { font-size: 26px; }
-            .nav { flex-direction: column; align-items: center; }
-            .hint { font-size: 12px; }
-        }
-
-        @media (max-width: 380px) {
-            .card { aspect-ratio: 4 / 3.6; }
-            .front-text .name { font-size: 22px; }
-            .front-text .for-label { font-size: 8px; letter-spacing: 6px; }
-            .front-text .from-label { font-size: 7px; letter-spacing: 5px; }
-            .front-text .sub { font-size: 8px; }
-            .seal { width: 38px; height: 38px; bottom: 16%; }
-            .seal-text { font-size: 13px; }
-            .bow { width: 16px; height: 16px; }
-            .bow::before, .bow::after { width: 10px; height: 6px; }
-            .bow::before { left: -3px; }
-            .bow::after { right: -3px; }
-            .ribbon-h { height: 3px; }
-            .ribbon-v { width: 3px; }
-            .letter-inner { padding: 12px 10px; font-size: 13px; }
-            .content .drop-cap { font-size: 28px; }
-            .content .first-line { font-size: 13px; }
-            .content .signature .sig-name { font-size: 22px; }
-        }
-
-        ::-webkit-scrollbar { width: 3px; }
-        ::-webkit-scrollbar-track { background: rgba(60, 40, 30, 0.05); }
-        ::-webkit-scrollbar-thumb { background: rgba(60, 40, 30, 0.15); border-radius: 10px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Letter For You</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <div class="desk"></div>
-    <div class="glow"></div>
-    <div id="dust"></div>
-    <div id="burst"></div>
+  <!-- Background Layer -->
+  <div class="table"></div>
+  <div class="candle-glow"></div>
+  <div id="dust-container"></div>
+  <div id="hearts-bg"></div>
 
-    <div class="scene">
+  <!-- Main Scene -->
+  <main id="scene">
 
-        <!-- ─── OPENING CARD ─── -->
-        <div class="card" id="card" onclick="openLetter()">
+    <!-- ENVELOPE SECTION -->
+    <div class="envelope-wrapper">
+      <div class="envelope" id="envelope" onclick="openEnvelope(event)">
+        
+        <!-- Top Triangular Flap -->
+        <div class="envelope-flap"></div>
 
-            <div class="burnt burnt-t"></div>
-            <div class="burnt burnt-b"></div>
-            <div class="burnt burnt-l"></div>
-            <div class="burnt burnt-r"></div>
-
-            <div class="wm">TS</div>
-
-            <div class="ribbon-wrap">
-                <div class="ribbon-h"></div>
-                <div class="ribbon-v"></div>
-                <div class="bow"></div>
-            </div>
-
-            <div class="seal" id="seal">
-                <span class="seal-text">TS</span>
-                <div class="seal-glow"></div>
-            </div>
-
-            <div class="front-text">
-                <span class="for-label">FOR</span>
-                <span class="name">TANISHA</span>
-                <span class="from-label">FROM SANYAM</span>
-                <span class="sub">A letter that was always meant for you.</span>
-            </div>
+        <!-- Envelope Front Text -->
+        <div class="envelope-front">
+          <span class="for-label">FOR</span>
+          <h1 class="name-label">Rupanshi</h1>
+          <span class="from-label">WITH ALL MY LOVE</span>
+          <p class="sub-label">A special message for you</p>
         </div>
 
-        <div class="hint">✦ tap the seal to open ✦</div>
+        <!-- Single Horizontal Burgundy Ribbon -->
+        <div class="ribbon ribbon-horiz"></div>
 
-        <!-- ─── LETTER (hidden until opened) ─── -->
-        <div class="letter-wrap" id="letterWrap">
-            <div class="letter-inner" id="letterInner">
-
-                <div class="paper-tex"></div>
-                <div class="burnt-inner bt"></div>
-                <div class="burnt-inner bb"></div>
-                <div class="burnt-inner bl"></div>
-                <div class="burnt-inner br"></div>
-                <div class="wm-inner">TS</div>
-
-                <div class="content">
-
-                    <div class="date">🌹 5 August 2026 🌹</div>
-
-                    <span class="drop-cap">M</span>
-                    <span class="first-line">y Dearest Tanisha,</span>
-
-                    <p>💖 If ever life feels heavy, I promise to be your calm.</p>
-                    <p>☀️ If ever the world feels cold, I promise to be your warmth.</p>
-                    <p>🌟 If ever you doubt your worth, I promise to remind you of every reason why you are everything to me.</p>
-
-                    <div class="promise-box">
-                        <p class="pline">📅 From <strong>8 August</strong> until <strong>22 August</strong>, I promise not to smoke a single cigarette or drink any alcohol.</p>
-                        <p class="psub">✨ No excuses. No exceptions. ✨</p>
-                    </div>
-
-                    <p>💫 I may not have all the answers, but I promise to always choose you, today, tomorrow, and in every lifetime after.</p>
-                    <p>🌈 I promise to stand by you, to grow with you, and to love you, in the little moments and the big ones too.</p>
-
-                    <div class="signature">
-                        <span class="sig-label">Forever yours,</span>
-                        <span class="sig-name">Sanyam 💕</span>
-                    </div>
-
-                    <div class="heart-divider">❤️‍🔥 ✦ ❤️‍🔥 ✦ ❤️‍🔥</div>
-                </div>
-
-                <div class="nav">
-                    <button class="btn" onclick="event.stopPropagation(); closeLetter();">✕ Close</button>
-                    <span class="hint-text">👇 scroll to read more</span>
-                </div>
-            </div>
+        <!-- 3D Wax Seal with Monogram -->
+        <div class="seal">
+          <div class="seal-glow"></div>
+          <div class="seal-inner">
+            <span class="seal-text">R</span>
+          </div>
         </div>
+
+      </div>
+      <div class="click-hint">Click the wax seal to open</div>
     </div>
 
-    <script>
-        // ─── DUST PARTICLES ───
-        (function() {
-            const c = document.getElementById('dust');
-            for (let i = 0; i < 28; i++) {
-                const d = document.createElement('div');
-                d.className = 'dust';
-                const s = 2 + Math.random() * 4;
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                const dx = (Math.random() - 0.5) * 600;
-                const dy = (Math.random() - 0.5) * 400 - 200;
-                const dur = 12 + Math.random() * 18;
-                const del = Math.random() * 16;
-                d.style.cssText =
-                    `left:${x}%;top:${y}%;width:${s}px;height:${s}px;--dx:${dx}px;--dy:${dy}px;animation-duration:${dur}s;animation-delay:${del}s;`;
-                c.appendChild(d);
-            }
-        })();
+    <!-- UNROLLED LETTER SECTION -->
+    <div class="letter-wrapper" id="letter-wrapper">
+      <article class="letter">
+        <div class="paper-texture"></div>
+        
+        <!-- Burnt Edges Styling -->
+        <div class="burnt-edge burnt-top"></div>
+        <div class="burnt-edge burnt-bottom"></div>
+        <div class="burnt-edge burnt-left"></div>
+        <div class="burnt-edge burnt-right"></div>
+        
+        <div class="watermark">R</div>
 
-        // ─── HEART BURST ───
-        function burstHearts() {
-            const c = document.getElementById('burst');
-            const emojis = ['❤️', '💕', '💖', '✨', '🌹', '💗', '❤️‍🔥'];
-            const cx = window.innerWidth / 2;
-            const cy = window.innerHeight / 2;
-            for (let i = 0; i < 35; i++) {
-                const el = document.createElement('div');
-                el.className = 'burst-heart';
-                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                const tx = (Math.random() - 0.5) * 700;
-                const ty = (Math.random() - 0.5) * 600 - 300;
-                const size = 20 + Math.random() * 44;
-                const xOff = (Math.random() - 0.5) * 120;
-                const yOff = (Math.random() - 0.5) * 80;
-                el.style.cssText =
-                    `left:${cx+xOff}px;top:${cy+yOff}px;font-size:${size}px;--tx:${tx}px;--ty:${ty}px;animation-duration:${1.2+Math.random()*0.8}s;`;
-                c.appendChild(el);
-                setTimeout(() => el.remove(), 2500);
-            }
-        }
+        <div class="letter-content">
+          <p class="date">February 14, 2026</p>
+          <p class="first-line"><span class="drop-cap">M</span>y Dearest Rupanshi,</p>
 
-        // ─── OPEN ───
-        function openLetter() {
-            document.body.classList.add('open');
-            burstHearts();
-            if (navigator.vibrate) navigator.vibrate(12);
-            setTimeout(() => {
-                document.getElementById('letterWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 900);
-        }
+          <p>From the moment you came into my life, every single day has felt warmer, brighter, and infinitely more beautiful. Your smile alone has a way of turning my darkest days into pure light.</p>
 
-        // ─── CLOSE ───
-        function closeLetter() {
-            document.body.classList.remove('open');
-            setTimeout(() => {
-                const card = document.getElementById('card');
-                if (card) {
-                    card.style.transition = 'none';
-                    card.style.transform = '';
-                    card.style.opacity = '';
-                    setTimeout(() => card.style.transition = '', 50);
-                }
-            }, 300);
-        }
+          <p>I built this space specifically for you—a small reminder of how deeply cherished you are and how much you mean to me.</p>
 
-        // ─── KEYBOARD ───
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && document.body.classList.contains('open')) closeLetter();
-            if ((e.key === 'Enter' || e.key === ' ') && !document.body.classList.contains('open')) {
-                document.getElementById('seal')?.click();
-            }
-        });
+          <div class="promise-box">
+            <p class="promise-line"><strong>My Heart's Promise</strong></p>
+            <p class="promise-sub">To stand by your side, support your dreams, and love you more with every passing day.</p>
+          </div>
 
-        // ─── PARALLAX ───
-        let isDesktop = window.innerWidth > 768;
-        window.addEventListener('resize', () => { isDesktop = window.innerWidth > 768; });
+          <p>Thank you for being my anchor, my joy, and my favorite person in the world.</p>
 
-        document.addEventListener('mousemove', (e) => {
-            if (!isDesktop) return;
-            const card = document.getElementById('card');
-            if (!card || document.body.classList.contains('open')) return;
-            const rect = card.getBoundingClientRect();
-            const cx = rect.left + rect.width / 2;
-            const cy = rect.top + rect.height / 2;
-            const dx = (e.clientX - cx) / rect.width;
-            const dy = (e.clientY - cy) / rect.height;
-            const max = 8;
-            card.style.transform =
-                `perspective(800px) rotateX(${-dy*max}deg) rotateY(${dx*max}deg) scale(1.015)`;
-        });
+          <div class="signature">
+            <span class="sig-label">Forever Yours,</span>
+            <span class="sig-name">Sanyam</span>
+          </div>
 
-        document.addEventListener('mouseleave', () => {
-            const card = document.getElementById('card');
-            if (card) card.style.removeProperty('transform');
-        });
+          <div class="heart-divider">♥</div>
 
-        // ─── BREATHING LETTER ───
-        const inner = document.getElementById('letterInner');
-        if (inner) {
-            let phase = 0;
-            setInterval(() => {
-                if (document.body.classList.contains('open')) {
-                    phase += 0.02;
-                    const s = 1 + Math.sin(phase) * 0.0012;
-                    inner.style.transform = `scale(${s})`;
-                }
-            }, 50);
-        }
+          <div class="letter-nav">
+            <button class="nav-btn" onclick="closeEnvelope()">Close Letter</button>
+            <span class="nav-hint">Made with all my heart</span>
+          </div>
+        </div>
+      </article>
+    </div>
 
-        // ─── SCROLL HINT ───
-        document.addEventListener('scroll', () => {
-            const h = document.querySelector('.nav .hint-text');
-            if (!h) return;
-            const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            h.style.opacity = pct > 0.12 ? '0' : '1';
-        });
+  </main>
 
-        console.log('%c❤️ For Tanisha ❤️', 'font-size:24px;color:#8b1a2b;font-weight:bold;');
-        console.log('%cFrom Sanyam — 5 August 2026', 'font-size:16px;color:#3d2419;font-style:italic;');
-    </script>
+  <div id="heart-burst"></div>
 
+  <script src="script.js"></script>
 </body>
 </html>
