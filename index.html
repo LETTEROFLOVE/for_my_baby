@@ -1,103 +1,477 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Letter For You</title>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Tanisha, From Sanyam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-desk: #1e130c;
+            --paper-color: #fcf8f2;
+            --paper-border: #e8dfd1;
+            --text-color: #2c221e;
+            --accent-color: #8b263e;
+            --accent-gold: #d4af37;
+            --ribbon-color: #a31c36;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #3a2318 0%, #120a06 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+
+        /* Ambient Dust Particles */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Container & Card Framing */
+        .scene {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-container {
+            width: 100%;
+            max-width: 540px;
+            min-height: 620px;
+            background: var(--paper-color);
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 
+                        inset 0 0 80px rgba(139, 69, 19, 0.1);
+            border: 1px solid var(--paper-border);
+            position: relative;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .card-container.opened {
+            animation: breathe 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes breathe {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.015); }
+        }
+
+        /* Ribbon Overlay */
+        .ribbon-v, .ribbon-h {
+            position: absolute;
+            background: linear-gradient(90deg, #7c1226, #a31c36, #7c1226);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            z-index: 10;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .ribbon-v {
+            width: 40px;
+            height: 100%;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+
+        .ribbon-h {
+            height: 40px;
+            width: 100%;
+            top: 40%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        /* Envelope / Cover Overlay */
+        .cover-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, #fdfbf7 0%, #ede6d8 100%);
+            border-radius: 12px;
+            z-index: 15;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+            border: 2px solid var(--paper-border);
+        }
+
+        .cover-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .cover-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: #66554b;
+            margin-bottom: 140px; /* Space for seal */
+        }
+
+        .opening-hint {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: #8c766b;
+            text-transform: lowercase;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Wax Seal */
+        .wax-seal {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 30% 30%, #c42b47, #7a1428);
+            border-radius: 50%;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 20;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px ridge rgba(255, 215, 0, 0.3);
+        }
+
+        .wax-seal:hover {
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        .wax-seal-inner {
+            width: 70px;
+            height: 70px;
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .seal-initials {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fceabb;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+            letter-spacing: 2px;
+        }
+
+        /* Card Inner Content */
+        .letter-content {
+            padding: 50px 40px;
+            opacity: 0;
+            transition: opacity 1s ease 0.4s;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .date {
+            text-align: right;
+            font-size: 0.95rem;
+            color: #6b5b52;
+            font-weight: 500;
+        }
+
+        .salutation {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .body-paragraphs {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            line-height: 1.6;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .body-paragraphs p {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        /* Special Promise Box */
+        .promise-box {
+            background: rgba(139, 38, 62, 0.04);
+            border-left: 3px solid var(--accent-color);
+            border-right: 3px solid var(--accent-color);
+            padding: 16px;
+            border-radius: 6px;
+            text-align: center;
+            margin: 8px 0;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+        }
+
+        .promise-box p {
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #4a1523;
+            font-size: 0.95rem;
+        }
+
+        .promise-box p:last-child {
+            margin-bottom: 0;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+        }
+
+        .signature {
+            margin-top: 10px;
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            line-height: 1.2;
+        }
+
+        .signature span {
+            display: block;
+            font-size: 1.1rem;
+            font-family: 'Playfair Display', serif;
+            color: #6b5b52;
+        }
+
+        /* Opened State Utility Classes */
+        .opened .cover-overlay {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .opened .ribbon-v, .opened .ribbon-h {
+            opacity: 0;
+            transform: scale(1.2);
+        }
+
+        .opened .wax-seal {
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(2);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .opened .letter-content {
+            opacity: 1;
+        }
+
+        /* Floating Emoji Particles */
+        .emoji-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            animation: floatUp 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(calc(-50% + var(--vx)), calc(-50% + var(--vy))) scale(1.4) rotate(var(--rot));
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Background Layer -->
-  <div class="table"></div>
-  <div class="candle-glow"></div>
-  <div id="dust-container"></div>
-  <div id="hearts-bg"></div>
+    <canvas id="particles-canvas"></canvas>
 
-  <!-- Main Scene -->
-  <main id="scene">
+    <div class="scene">
+        <div class="card-container" id="card">
+            
+            <!-- Structural Ribbons -->
+            <div class="ribbon-v"></div>
+            <div class="ribbon-h"></div>
 
-    <!-- ENVELOPE SECTION -->
-    <div class="envelope-wrapper" id="envelopeWrapper">
-      <div class="envelope" id="envelope" onclick="openEnvelope(event)">
-        
-        <!-- Top Triangular Flap -->
-        <div class="envelope-flap"></div>
+            <!-- Clickable Wax Seal -->
+            <div class="wax-seal" id="waxSeal">
+                <div class="wax-seal-inner">
+                    <span class="seal-initials">TS</span>
+                </div>
+            </div>
 
-        <!-- Envelope Front Text (Original Content & Layout Kept Intact) -->
-        <div class="envelope-front">
-          <span class="for-label">FOR</span>
-          <h1 class="name-label">Rupanshi</h1>
-          <span class="from-label">WITH ALL MY LOVE</span>
-          <p class="sub-label">A special message for you</p>
+            <!-- Envelope Cover Overlay -->
+            <div class="cover-overlay">
+                <h1 class="cover-title">FOR TANISHA FROM SANYAM</h1>
+                <p class="cover-subtitle">A letter that was always meant for you.</p>
+                <div class="opening-hint">✦ tap the seal to open ✦</div>
+            </div>
+
+            <!-- Internal Written Message -->
+            <div class="letter-content">
+                <div class="date">🌹 5 August 2026 🌹</div>
+                
+                <div class="salutation">My Dearest Tanisha,</div>
+
+                <div class="body-paragraphs">
+                    <p><span>💖</span> <span>If ever life feels heavy, I promise to be your calm.</span></p>
+                    <p><span>☀️</span> <span>If ever the world feels cold, I promise to be your warmth.</span></p>
+                    <p><span>🌟</span> <span>If ever you doubt your worth, I promise to remind you of every reason why you are everything to me.</span></p>
+                </div>
+
+                <div class="promise-box">
+                    <p>📅 From <strong>8 August</strong> until <strong>22 August</strong>, I promise not to smoke a single cigarette or drink any alcohol.</p>
+                    <p>✨ No excuses. No exceptions. ✨</p>
+                </div>
+
+                <div class="body-paragraphs">
+                    <p><span>💫</span> <span>I may not have all the answers, but I promise to always choose you, today, tomorrow, and in every lifetime after.</span></p>
+                    <p><span>🌈</span> <span>I promise to stand by you, to grow with you, and to love you, in the little moments and the big ones too.</span></p>
+                </div>
+
+                <div class="signature">
+                    <span>Forever yours,</span>
+                    Sanyam 💕
+                </div>
+            </div>
+
         </div>
-
-        <!-- Single Horizontal Burgundy Ribbon -->
-        <div class="ribbon ribbon-horiz"></div>
-
-        <!-- 3D Wax Seal with Original Monogram Initial -->
-        <div class="seal" onclick="openEnvelope(event)">
-          <div class="seal-glow"></div>
-          <div class="seal-inner">
-            <span class="seal-text">R</span>
-          </div>
-        </div>
-
-      </div>
-      <div class="click-hint">Click the wax seal to open</div>
     </div>
 
-    <!-- UNROLLED LETTER SECTION -->
-    <div class="letter-wrapper" id="letterWrapper">
-      <article class="letter" id="letter">
-        <div class="paper-texture"></div>
-        
-        <!-- Burnt Edges Styling -->
-        <div class="burnt-edge burnt-top"></div>
-        <div class="burnt-edge burnt-bottom"></div>
-        <div class="burnt-edge burnt-left"></div>
-        <div class="burnt-edge burnt-right"></div>
-        
-        <div class="watermark">R</div>
+    <script>
+        // Ambient Dust Particle Canvas Effect
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
 
-        <div class="letter-content">
-          <p class="date">February 14, 2026</p>
-          <p class="first-line"><span class="drop-cap">M</span>y Dearest Rupanshi,</p>
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-          <p>From the moment you came into my life, every single day has felt warmer, brighter, and infinitely more beautiful. Your smile alone has a way of turning my darkest days into pure light.</p>
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * -0.5 - 0.1;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(242, 211, 153, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
 
-          <p>I built this space specifically for you—a small reminder of how deeply cherished you are and how much you mean to me.</p>
+        for (let i = 0; i < 60; i++) {
+            particles.push(new Particle());
+        }
 
-          <div class="promise-box">
-            <p class="promise-line"><strong>My Heart's Promise</strong></p>
-            <p class="promise-sub">To stand by your side, support your dreams, and love you more with every passing day.</p>
-          </div>
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
 
-          <p>Thank you for being my anchor, my joy, and my favorite person in the world.</p>
+        // 3D Tilt Effect on Mouse Move
+        const card = document.getElementById('card');
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 45;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
 
-          <div class="signature">
-            <span class="sig-label">Forever Yours,</span>
-            <span class="sig-name">Sanyam</span>
-          </div>
+        // Interactive Seal Click & Heart Burst
+        const waxSeal = document.getElementById('waxSeal');
+        const emojis = ['❤️', '💕', '💖', '✨', '🌹', '💗', '❤️‍🔥'];
 
-          <div class="heart-divider">♥</div>
+        waxSeal.addEventListener('click', (e) => {
+            card.classList.add('opened');
 
-          <div class="letter-nav">
-            <button class="nav-btn" onclick="closeEnvelope()">Close Letter</button>
-            <span class="nav-hint">Made with all my heart</span>
-          </div>
-        </div>
-      </article>
-    </div>
+            // Trigger Heart Burst Effect
+            const rect = waxSeal.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
 
-  </main>
+            for (let i = 0; i < 35; i++) {
+                createParticle(centerX, centerY);
+            }
+        });
 
-  <div id="heart-burst"></div>
+        function createParticle(x, y) {
+            const el = document.createElement('div');
+            el.className = 'emoji-particle';
+            el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            const vx = (Math.random() - 0.5) * 400 + 'px';
+            const vy = (Math.random() - 0.7) * 400 + 'px';
+            const rot = (Math.random() - 0.5) * 360 + 'deg';
 
-  <script src="script.js"></script>
+            el.style.setProperty('--vx', vx);
+            el.style.setProperty('--vy', vy);
+            el.style.setProperty('--rot', rot);
+            el.style.left = `${x}px`;
+            el.style.top = `${y}px`;
+            el.style.fontSize = `${Math.random() * 20 + 18}px`;
+
+            document.body.appendChild(el);
+
+            setTimeout(() => {
+                el.remove();
+            }, 2500);
+        }
+    </script>
 </body>
 </html>
