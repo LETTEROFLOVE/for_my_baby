@@ -48,7 +48,7 @@
             position: fixed;
             inset: 0;
             z-index: 0;
-            background: radial-gradient(ellipse at 50% 20%, rgba(255, 200, 130, 0.07), transparent 55%);
+            background: radial-gradient(ellipse at 50% 20%, rgba(255, 200, 130, 0.08), transparent 55%);
             pointer-events: none;
             animation: glowPulse 4s ease-in-out infinite alternate;
         }
@@ -92,7 +92,7 @@
             max-width: 520px;
         }
 
-        /* ─── ENVELOPE CARD ─── */
+        /* ─── CARD ─── */
         .card {
             position: relative;
             width: 100%;
@@ -117,26 +117,26 @@
             position: absolute;
             inset: 0;
             background:
-                repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(160, 140, 125, 0.04) 28px, rgba(160, 140, 125, 0.04) 29px),
-                repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(160, 140, 125, 0.04) 28px, rgba(160, 140, 125, 0.04) 29px);
+                repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(160, 140, 125, 0.05) 28px, rgba(160, 140, 125, 0.05) 29px),
+                repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(160, 140, 125, 0.05) 28px, rgba(160, 140, 125, 0.05) 29px);
             border-radius: 10px;
             pointer-events: none;
             z-index: 1;
         }
 
-        /* Burnt edges */
+        /* ─── BURNT EDGES ─── */
         .burnt {
             position: absolute;
             pointer-events: none;
             z-index: 2;
-            opacity: 0.12;
+            opacity: 0.15;
         }
         .burnt-t { top: -2px; left: 8%; right: 8%; height: 10px; background: radial-gradient(ellipse at 30% 0%, #6b4a2e, transparent 60%); filter: blur(1.5px); }
         .burnt-b { bottom: -2px; left: 12%; right: 12%; height: 10px; background: radial-gradient(ellipse at 70% 100%, #6b4a2e, transparent 60%); filter: blur(1.5px); }
         .burnt-l { left: -2px; top: 12%; bottom: 12%; width: 10px; background: radial-gradient(ellipse at 0% 50%, #6b4a2e, transparent 60%); filter: blur(1.5px); }
         .burnt-r { right: -2px; top: 15%; bottom: 15%; width: 10px; background: radial-gradient(ellipse at 100% 50%, #6b4a2e, transparent 60%); filter: blur(1.5px); }
 
-        /* Watermark */
+        /* ─── WATERMARK ─── */
         .wm {
             position: absolute;
             right: 12px;
@@ -280,13 +280,13 @@
             justify-content: center;
             z-index: 4;
             pointer-events: none;
-            padding: 10% 12%;
+            padding: 8% 10%;
             text-align: center;
         }
 
         .front-text .for-label {
             font-size: clamp(10px, 2vw, 15px);
-            letter-spacing: 10px;
+            letter-spacing: 12px;
             color: rgba(60, 40, 30, 0.40);
             font-weight: 600;
             text-transform: uppercase;
@@ -295,17 +295,17 @@
 
         .front-text .name {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(30px, 9vw, 54px);
+            font-size: clamp(32px, 10vw, 58px);
             color: #3d2419;
             text-shadow: 0 2px 8px rgba(255, 255, 255, 0.08);
             line-height: 1.05;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin: 2px 0;
         }
 
         .front-text .from-label {
-            font-size: clamp(9px, 1.8vw, 13px);
-            letter-spacing: 7px;
+            font-size: clamp(9px, 1.8vw, 14px);
+            letter-spacing: 8px;
             color: rgba(60, 40, 30, 0.35);
             font-weight: 600;
             text-transform: uppercase;
@@ -340,8 +340,8 @@
 
         /* ─── OPEN STATE ─── */
         body.open .card {
-            transform: scale(0.88) translateY(30px);
-            opacity: 0.2;
+            transform: scale(0.85) translateY(30px);
+            opacity: 0.15;
             pointer-events: none;
             transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -627,177 +627,83 @@
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 480px) {
-            .card {
-                aspect-ratio: 4 / 3.4;
-            }
-            .front-text .name {
-                font-size: 26px;
-            }
-            .front-text .for-label {
-                font-size: 9px;
-                letter-spacing: 7px;
-            }
-            .front-text .from-label {
-                font-size: 8px;
-                letter-spacing: 5px;
-            }
-            .front-text .sub {
-                font-size: 9px;
-            }
-            .seal {
-                width: 44px;
-                height: 44px;
-                bottom: 18%;
-            }
-            .seal-text {
-                font-size: 15px;
-            }
-            .bow {
-                width: 20px;
-                height: 20px;
-            }
-            .bow::before,
-            .bow::after {
-                width: 12px;
-                height: 7px;
-            }
+            .card { aspect-ratio: 4 / 3.4; }
+            .front-text .name { font-size: 28px; }
+            .front-text .for-label { font-size: 9px; letter-spacing: 8px; }
+            .front-text .from-label { font-size: 8px; letter-spacing: 6px; }
+            .front-text .sub { font-size: 9px; }
+            .seal { width: 46px; height: 46px; bottom: 18%; }
+            .seal-text { font-size: 16px; }
+            .bow { width: 20px; height: 20px; }
+            .bow::before, .bow::after { width: 12px; height: 7px; }
             .bow::before { left: -4px; }
             .bow::after { right: -4px; }
             .ribbon-h { height: 4px; }
             .ribbon-v { width: 4px; }
-            .letter-inner {
-                padding: 16px 12px;
-                font-size: 14px;
-            }
-            .content p {
-                text-indent: 12px;
-            }
-            .content .drop-cap {
-                font-size: 36px;
-            }
-            .content .first-line {
-                font-size: 14px;
-            }
-            .content .signature .sig-name {
-                font-size: 26px;
-            }
-            .nav {
-                flex-direction: column;
-                align-items: center;
-            }
-            .hint {
-                font-size: 12px;
-            }
+            .letter-inner { padding: 16px 12px; font-size: 14px; }
+            .content p { text-indent: 12px; }
+            .content .drop-cap { font-size: 36px; }
+            .content .first-line { font-size: 14px; }
+            .content .signature .sig-name { font-size: 26px; }
+            .nav { flex-direction: column; align-items: center; }
+            .hint { font-size: 12px; }
         }
 
         @media (max-width: 380px) {
-            .card {
-                aspect-ratio: 4 / 3.6;
-            }
-            .front-text .name {
-                font-size: 20px;
-            }
-            .front-text .for-label {
-                font-size: 8px;
-                letter-spacing: 5px;
-            }
-            .front-text .from-label {
-                font-size: 7px;
-                letter-spacing: 4px;
-            }
-            .front-text .sub {
-                font-size: 8px;
-            }
-            .seal {
-                width: 36px;
-                height: 36px;
-                bottom: 16%;
-            }
-            .seal-text {
-                font-size: 12px;
-            }
-            .bow {
-                width: 16px;
-                height: 16px;
-            }
-            .bow::before,
-            .bow::after {
-                width: 10px;
-                height: 6px;
-            }
+            .card { aspect-ratio: 4 / 3.6; }
+            .front-text .name { font-size: 22px; }
+            .front-text .for-label { font-size: 8px; letter-spacing: 6px; }
+            .front-text .from-label { font-size: 7px; letter-spacing: 5px; }
+            .front-text .sub { font-size: 8px; }
+            .seal { width: 38px; height: 38px; bottom: 16%; }
+            .seal-text { font-size: 13px; }
+            .bow { width: 16px; height: 16px; }
+            .bow::before, .bow::after { width: 10px; height: 6px; }
             .bow::before { left: -3px; }
             .bow::after { right: -3px; }
             .ribbon-h { height: 3px; }
             .ribbon-v { width: 3px; }
-            .letter-inner {
-                padding: 12px 10px;
-                font-size: 13px;
-            }
-            .content .drop-cap {
-                font-size: 28px;
-            }
-            .content .first-line {
-                font-size: 13px;
-            }
-            .content .signature .sig-name {
-                font-size: 22px;
-            }
+            .letter-inner { padding: 12px 10px; font-size: 13px; }
+            .content .drop-cap { font-size: 28px; }
+            .content .first-line { font-size: 13px; }
+            .content .signature .sig-name { font-size: 22px; }
         }
 
-        /* ─── SCROLLBAR ─── */
-        ::-webkit-scrollbar {
-            width: 3px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(60, 40, 30, 0.05);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(60, 40, 30, 0.15);
-            border-radius: 10px;
-        }
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: rgba(60, 40, 30, 0.05); }
+        ::-webkit-scrollbar-thumb { background: rgba(60, 40, 30, 0.15); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <!-- Background -->
     <div class="desk"></div>
     <div class="glow"></div>
-
-    <!-- Dust -->
     <div id="dust"></div>
-
-    <!-- Heart Burst -->
     <div id="burst"></div>
 
-    <!-- Main -->
     <div class="scene">
 
-        <!-- CARD -->
+        <!-- ─── OPENING CARD ─── -->
         <div class="card" id="card" onclick="openLetter()">
 
-            <!-- Burnt edges -->
             <div class="burnt burnt-t"></div>
             <div class="burnt burnt-b"></div>
             <div class="burnt burnt-l"></div>
             <div class="burnt burnt-r"></div>
 
-            <!-- Watermark -->
             <div class="wm">TS</div>
 
-            <!-- Ribbon -->
             <div class="ribbon-wrap">
                 <div class="ribbon-h"></div>
                 <div class="ribbon-v"></div>
                 <div class="bow"></div>
             </div>
 
-            <!-- Wax Seal -->
             <div class="seal" id="seal">
                 <span class="seal-text">TS</span>
                 <div class="seal-glow"></div>
             </div>
 
-            <!-- Front Text -->
             <div class="front-text">
                 <span class="for-label">FOR</span>
                 <span class="name">TANISHA</span>
@@ -806,10 +712,9 @@
             </div>
         </div>
 
-        <!-- Hint -->
         <div class="hint">✦ tap the seal to open ✦</div>
 
-        <!-- LETTER -->
+        <!-- ─── LETTER (hidden until opened) ─── -->
         <div class="letter-wrap" id="letterWrap">
             <div class="letter-inner" id="letterInner">
 
@@ -856,7 +761,7 @@
     </div>
 
     <script>
-        // ─── DUST ───
+        // ─── DUST PARTICLES ───
         (function() {
             const c = document.getElementById('dust');
             for (let i = 0; i < 28; i++) {
@@ -952,7 +857,7 @@
             if (card) card.style.removeProperty('transform');
         });
 
-        // ─── BREATHING ───
+        // ─── BREATHING LETTER ───
         const inner = document.getElementById('letterInner');
         if (inner) {
             let phase = 0;
@@ -973,7 +878,6 @@
             h.style.opacity = pct > 0.12 ? '0' : '1';
         });
 
-        // ─── CONSOLE ───
         console.log('%c❤️ For Tanisha ❤️', 'font-size:24px;color:#8b1a2b;font-weight:bold;');
         console.log('%cFrom Sanyam — 5 August 2026', 'font-size:16px;color:#3d2419;font-style:italic;');
     </script>
