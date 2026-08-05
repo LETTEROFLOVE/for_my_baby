@@ -22,13 +22,13 @@
   <main id="scene">
 
     <!-- ENVELOPE SECTION -->
-    <div class="envelope-wrapper">
+    <div class="envelope-wrapper" id="envelopeWrapper">
       <div class="envelope" id="envelope" onclick="openEnvelope(event)">
         
         <!-- Top Triangular Flap -->
         <div class="envelope-flap"></div>
 
-        <!-- Envelope Front Text -->
+        <!-- Envelope Front Text (Original Content & Layout Kept Intact) -->
         <div class="envelope-front">
           <span class="for-label">FOR</span>
           <h1 class="name-label">Rupanshi</h1>
@@ -39,8 +39,8 @@
         <!-- Single Horizontal Burgundy Ribbon -->
         <div class="ribbon ribbon-horiz"></div>
 
-        <!-- 3D Wax Seal with Monogram -->
-        <div class="seal">
+        <!-- 3D Wax Seal with Original Monogram Initial -->
+        <div class="seal" onclick="openEnvelope(event)">
           <div class="seal-glow"></div>
           <div class="seal-inner">
             <span class="seal-text">R</span>
@@ -52,8 +52,8 @@
     </div>
 
     <!-- UNROLLED LETTER SECTION -->
-    <div class="letter-wrapper" id="letter-wrapper">
-      <article class="letter">
+    <div class="letter-wrapper" id="letterWrapper">
+      <article class="letter" id="letter">
         <div class="paper-texture"></div>
         
         <!-- Burnt Edges Styling -->
