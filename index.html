@@ -7,13 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-desk: #1e130c;
-            --paper-color: #fcf8f2;
-            --paper-border: #e8dfd1;
+            --bg-desk: #1a0f0a;
+            --paper-color: #fdfbf7;
+            --envelope-color: #f3ebd9;
+            --envelope-flap: #e8dcbf;
+            --envelope-shadow: #d3c4a1;
             --text-color: #2c221e;
             --accent-color: #8b263e;
             --accent-gold: #d4af37;
-            --ribbon-color: #a31c36;
         }
 
         * {
@@ -61,8 +62,8 @@
             background: var(--paper-color);
             border-radius: 12px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 
-                        inset 0 0 80px rgba(139, 69, 19, 0.1);
-            border: 1px solid var(--paper-border);
+                        inset 0 0 80px rgba(139, 69, 19, 0.08);
+            border: 1px solid #e8dfd1;
             position: relative;
             transition: transform 0.1s ease-out, box-shadow 0.3s ease;
             transform-style: preserve-3d;
@@ -77,71 +78,93 @@
             100% { transform: scale(1.015); }
         }
 
-        /* Ribbon Overlay */
-        .ribbon-v, .ribbon-h {
-            position: absolute;
-            background: linear-gradient(90deg, #7c1226, #a31c36, #7c1226);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            z-index: 10;
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .ribbon-v {
-            width: 40px;
-            height: 100%;
-            left: 50%;
-            top: 0;
-            transform: translateX(-50%);
-        }
-
-        .ribbon-h {
-            height: 40px;
-            width: 100%;
-            top: 40%;
-            left: 0;
-            transform: translateY(-50%);
-        }
-
-        /* Envelope / Cover Overlay */
+        /* Envelope Cover Overlay */
         .cover-overlay {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at center, #fdfbf7 0%, #ede6d8 100%);
+            background: var(--envelope-color);
             border-radius: 12px;
             z-index: 15;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            padding: 40px 20px;
+            padding: 50px 20px 30px 20px;
             text-align: center;
-            transition: opacity 0.8s ease, visibility 0.8s;
-            border: 2px solid var(--paper-border);
+            transition: opacity 0.8s ease, visibility 0.8s, transform 0.8s ease;
+            overflow: hidden;
+            border: 1px solid #dcd1ba;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.05);
+        }
+
+        /* Envelope Triangular Flaps & Seams */
+        .envelope-flap-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            border-left: 270px solid transparent;
+            border-right: 270px solid transparent;
+            border-top: 240px solid var(--envelope-flap);
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.12));
+            z-index: 1;
+        }
+
+        .envelope-flap-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            border-top: 310px solid transparent;
+            border-bottom: 310px solid transparent;
+            border-left: 270px solid var(--envelope-shadow);
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        .envelope-flap-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            border-top: 310px solid transparent;
+            border-bottom: 310px solid transparent;
+            border-right: 270px solid var(--envelope-shadow);
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        .envelope-header {
+            position: relative;
+            z-index: 2;
+            margin-top: 10px;
         }
 
         .cover-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             letter-spacing: 3px;
             color: var(--accent-color);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-transform: uppercase;
         }
 
         .cover-subtitle {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #66554b;
-            margin-bottom: 140px; /* Space for seal */
         }
 
         .opening-hint {
-            position: absolute;
-            bottom: 30px;
+            position: relative;
+            z-index: 2;
             font-size: 0.85rem;
             letter-spacing: 2px;
-            color: #8c766b;
+            color: #7a665a;
             text-transform: lowercase;
             animation: pulse 2s infinite;
         }
@@ -151,17 +174,17 @@
             50% { opacity: 1; }
         }
 
-        /* Wax Seal */
+        /* Wax Seal Centered on Top Flap Tip */
         .wax-seal {
             position: absolute;
-            top: 40%;
+            top: 240px;
             left: 50%;
             transform: translate(-50%, -50%) scale(1);
-            width: 90px;
-            height: 90px;
+            width: 85px;
+            height: 85px;
             background: radial-gradient(circle at 30% 30%, #c42b47, #7a1428);
             border-radius: 50%;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4), inset 0 0 10px rgba(0,0,0,0.4);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -176,8 +199,8 @@
         }
 
         .wax-seal-inner {
-            width: 70px;
-            height: 70px;
+            width: 65px;
+            height: 65px;
             border: 2px dashed rgba(255, 255, 255, 0.4);
             border-radius: 50%;
             display: flex;
@@ -187,7 +210,7 @@
 
         .seal-initials {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: #fceabb;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
@@ -280,11 +303,7 @@
         .opened .cover-overlay {
             opacity: 0;
             visibility: hidden;
-        }
-
-        .opened .ribbon-v, .opened .ribbon-h {
-            opacity: 0;
-            transform: scale(1.2);
+            transform: scale(0.95);
         }
 
         .opened .wax-seal {
@@ -324,10 +343,6 @@
 
     <div class="scene">
         <div class="card-container" id="card">
-            
-            <!-- Structural Ribbons -->
-            <div class="ribbon-v"></div>
-            <div class="ribbon-h"></div>
 
             <!-- Clickable Wax Seal -->
             <div class="wax-seal" id="waxSeal">
@@ -338,8 +353,16 @@
 
             <!-- Envelope Cover Overlay -->
             <div class="cover-overlay">
-                <h1 class="cover-title">FOR TANISHA FROM SANYAM</h1>
-                <p class="cover-subtitle">A letter that was always meant for you.</p>
+                <!-- Envelope Geometry -->
+                <div class="envelope-flap-top"></div>
+                <div class="envelope-flap-left"></div>
+                <div class="envelope-flap-right"></div>
+
+                <div class="envelope-header">
+                    <h1 class="cover-title">FOR TANISHA FROM SANYAM</h1>
+                    <p class="cover-subtitle">A letter that was always meant for you.</p>
+                </div>
+
                 <div class="opening-hint">✦ tap the seal to open ✦</div>
             </div>
 
