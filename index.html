@@ -4,80 +4,1009 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>💌 For Tanisha ❤️ From Sanyam</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+    <style>
+        /* ───────── RESET ───────── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100vh;
+            font-family: 'Cormorant Garamond', serif;
+            background: #120d0b;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* ───────── WOODEN DESK ───────── */
+        .desk {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 50% 80%, rgba(200, 150, 100, 0.08), transparent 60%),
+                linear-gradient(180deg, #1a100d 0%, #2a1c17 35%, #3d281f 65%, #221511 100%);
+        }
+
+        .desk::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(90deg,
+                    rgba(75, 47, 33, 0.20) 0px,
+                    rgba(75, 47, 33, 0.20) 1px,
+                    transparent 1px,
+                    transparent 4px),
+                repeating-linear-gradient(0deg,
+                    rgba(60, 38, 27, 0.10) 0px,
+                    rgba(60, 38, 27, 0.10) 1px,
+                    transparent 1px,
+                    transparent 6px);
+            pointer-events: none;
+        }
+
+        /* ───────── WARM GLOW ───────── */
+        .glow {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: radial-gradient(ellipse at 50% 25%, rgba(255, 200, 130, 0.07), transparent 55%);
+            pointer-events: none;
+            animation: glowPulse 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            0% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.03);
+            }
+        }
+
+        /* ───────── DUST PARTICLES ───────── */
+        #dust-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .dust {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 220, 180, 0.4), transparent);
+            animation: dustFloat linear infinite;
+        }
+
+        @keyframes dustFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(var(--dx), var(--dy)) scale(0.2);
+                opacity: 0;
+            }
+        }
+
+        /* ───────── SCENE ───────── */
+        .scene {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 700px;
+            min-height: 100vh;
+            padding: 20px 16px 60px;
+        }
+
+        /* ───────── ENVELOPE / LETTER CARD ───────── */
+        .letter-card {
+            position: relative;
+            width: 100%;
+            max-width: 560px;
+            aspect-ratio: 4 / 3;
+            background: linear-gradient(165deg, #f6ede2, #e6d8c8);
+            border-radius: 8px;
+            box-shadow:
+                0 40px 100px rgba(0, 0, 0, 0.7),
+                0 15px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease;
+            transform-origin: center;
+            overflow: hidden;
+            /* parchment texture overlay */
+        }
+
+        .letter-card:hover {
+            transform: scale(1.015);
+            box-shadow: 0 50px 120px rgba(0, 0, 0, 0.8), 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Paper Texture */
+        .letter-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 28px,
+                    rgba(180, 160, 145, 0.04) 28px,
+                    rgba(180, 160, 145, 0.04) 29px),
+                repeating-linear-gradient(90deg,
+                    transparent,
+                    transparent 28px,
+                    rgba(180, 160, 145, 0.04) 28px,
+                    rgba(180, 160, 145, 0.04) 29px);
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Burnt / Aged Edges */
+        .burnt {
+            position: absolute;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.15;
+        }
+        .burnt-t {
+            top: -2px;
+            left: 8%;
+            right: 8%;
+            height: 10px;
+            background: radial-gradient(ellipse at 30% 0%, #6b4a2e, transparent 60%);
+            filter: blur(1px);
+        }
+        .burnt-b {
+            bottom: -2px;
+            left: 12%;
+            right: 12%;
+            height: 10px;
+            background: radial-gradient(ellipse at 70% 100%, #6b4a2e, transparent 60%);
+            filter: blur(1px);
+        }
+        .burnt-l {
+            left: -2px;
+            top: 10%;
+            bottom: 10%;
+            width: 10px;
+            background: radial-gradient(ellipse at 0% 50%, #6b4a2e, transparent 60%);
+            filter: blur(1px);
+        }
+        .burnt-r {
+            right: -2px;
+            top: 15%;
+            bottom: 15%;
+            width: 10px;
+            background: radial-gradient(ellipse at 100% 50%, #6b4a2e, transparent 60%);
+            filter: blur(1px);
+        }
+
+        /* ───────── WATERMARK ───────── */
+        .watermark {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(70px, 18vw, 130px);
+            color: rgba(100, 70, 50, 0.05);
+            pointer-events: none;
+            z-index: 1;
+            transform: rotate(-6deg);
+        }
+
+        /* ───────── RIBBON ───────── */
+        .ribbon-wrap {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 3;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .ribbon {
+            position: absolute;
+            background: linear-gradient(170deg, #b02038, #7a1025, #5a0a1a);
+            opacity: 0.85;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Horizontal ribbon (crossing the letter) */
+        .ribbon-h {
+            left: 0;
+            top: 48%;
+            width: 100%;
+            height: clamp(6px, 1.4vw, 10px);
+            transform: translateY(-50%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Vertical ribbon */
+        .ribbon-v {
+            left: 48%;
+            top: 0;
+            width: clamp(6px, 1.4vw, 10px);
+            height: 100%;
+            transform: translateX(-50%);
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Ribbon bow accent (small decorative knot) */
+        .ribbon-bow {
+            position: absolute;
+            left: 50%;
+            top: 48%;
+            transform: translate(-50%, -50%);
+            width: clamp(28px, 5vw, 44px);
+            height: clamp(28px, 5vw, 44px);
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 35%, #c04058, #7a1025 60%, #4a0815);
+            z-index: 5;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+        }
+
+        .ribbon-bow::before,
+        .ribbon-bow::after {
+            content: '';
+            position: absolute;
+            width: clamp(18px, 3.5vw, 32px);
+            height: clamp(10px, 2vw, 18px);
+            background: linear-gradient(170deg, #b02038, #7a1025);
+            border-radius: 50% 50% 0 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .ribbon-bow::before {
+            left: -8px;
+            transform: translateY(-50%) rotate(-20deg);
+        }
+        .ribbon-bow::after {
+            right: -8px;
+            transform: translateY(-50%) rotate(20deg) scaleX(-1);
+        }
+
+        /* ───────── WAX SEAL ───────── */
+        .seal {
+            position: absolute;
+            left: 50%;
+            bottom: clamp(18%, 22%, 28%);
+            transform: translateX(-50%);
+            width: clamp(64px, 16vw, 96px);
+            height: clamp(64px, 16vw, 96px);
+            border-radius: 50%;
+            background: radial-gradient(circle at 38% 30%, #d45a72, #7d1025 55%, #4a0815);
+            z-index: 6;
+            box-shadow:
+                0 8px 35px rgba(0, 0, 0, 0.6),
+                inset 0 -6px 16px rgba(0, 0, 0, 0.3),
+                inset 0 6px 16px rgba(255, 200, 150, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: auto;
+        }
+
+        .seal:hover {
+            transform: translateX(-50%) scale(1.06);
+            box-shadow: 0 8px 45px rgba(0, 0, 0, 0.7), 0 0 40px rgba(200, 80, 60, 0.15);
+        }
+
+        .seal:active {
+            transform: translateX(-50%) scale(0.94);
+        }
+
+        .seal-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(22px, 5.5vw, 38px);
+            color: #f6e7d1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+            transform: rotate(-6deg);
+        }
+
+        .seal-glow {
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 30%, rgba(255, 200, 100, 0.12), transparent 70%);
+            animation: sealPulse 3.5s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes sealPulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1.15);
+                opacity: 0.7;
+            }
+        }
+
+        /* ───────── FRONT TEXT ───────── */
+        .front-text {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 4;
+            pointer-events: none;
+            padding: 10% 12%;
+            text-align: center;
+        }
+
+        .front-text .for-label {
+            font-size: clamp(12px, 2.2vw, 18px);
+            letter-spacing: 12px;
+            color: rgba(60, 40, 30, 0.35);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .front-text .name {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(38px, 10vw, 66px);
+            color: #3d2419;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+            line-height: 1.05;
+            letter-spacing: 3px;
+            margin: 4px 0;
+        }
+
+        .front-text .from-label {
+            font-size: clamp(11px, 2vw, 16px);
+            letter-spacing: 8px;
+            color: rgba(60, 40, 30, 0.30);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .front-text .sub {
+            font-size: clamp(12px, 2vw, 16px);
+            color: rgba(60, 40, 30, 0.40);
+            font-style: italic;
+            margin-top: 6px;
+            letter-spacing: 1px;
+            padding: 0 8px;
+        }
+
+        .front-text .sub em {
+            font-style: italic;
+            color: rgba(60, 40, 30, 0.50);
+        }
+
+        /* ───────── TAP HINT ───────── */
+        .tap-hint {
+            margin-top: 20px;
+            font-size: clamp(14px, 2.2vw, 18px);
+            color: rgba(255, 220, 180, 0.45);
+            letter-spacing: 3px;
+            font-style: italic;
+            animation: hintPulse 2.8s ease-in-out infinite;
+            text-align: center;
+        }
+
+        @keyframes hintPulse {
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.04);
+            }
+        }
+
+        /* ───────── OPEN STATE ───────── */
+        body.open .letter-card {
+            transform: scale(0.92) translateY(30px);
+            opacity: 0.3;
+            pointer-events: none;
+            transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        body.open .letter-card .seal {
+            opacity: 0;
+            transform: translateX(-50%) scale(0);
+            transition: all 0.8s ease;
+        }
+
+        body.open .letter-card .ribbon-wrap {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        body.open .letter-card .front-text {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        body.open .letter-card .burnt {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        body.open .letter-card .watermark {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        body.open .letter-wrapper {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+            max-height: 3000px;
+        }
+
+        body.open .tap-hint {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.6s ease;
+            pointer-events: none;
+        }
+
+        /* ───────── LETTER WRAPPER (scroll reveal) ───────── */
+        .letter-wrapper {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 620px;
+            opacity: 0;
+            transform: translateY(40px) scale(0.94);
+            pointer-events: none;
+            margin-top: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 1.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        body.open .letter-wrapper {
+            max-height: 3000px;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            overflow: visible;
+        }
+
+        /* ───────── THE LETTER (inside) ───────── */
+        .letter-inner {
+            position: relative;
+            background: linear-gradient(170deg, #faf3e8, #ede4d6);
+            padding: clamp(28px, 5vw, 50px);
+            padding-top: clamp(32px, 6vw, 55px);
+            border-radius: 8px;
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.6),
+                0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            line-height: 1.9;
+            color: #3f2a1d;
+            font-size: clamp(16px, 2.5vw, 20px);
+            width: 100%;
+            min-height: 320px;
+            overflow: visible;
+        }
+
+        .letter-inner .paper-texture {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(180, 160, 145, 0.04) 30px, rgba(180, 160, 145, 0.04) 31px),
+                repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(180, 160, 145, 0.04) 30px, rgba(180, 160, 145, 0.04) 31px);
+            border-radius: 8px;
+        }
+
+        .letter-inner .burnt-inner {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.10;
+        }
+        .burnt-inner.t {
+            top: -2px;
+            left: 10%;
+            right: 10%;
+            height: 8px;
+            background: radial-gradient(ellipse at 30% 0%, #6b4a2e, transparent 60%);
+            filter: blur(1px);
+        }
+        .burnt-inner.b {
+            bottom: -2px;
+            left: 15%;
+            right: 15%;
+            height: 8px;
+            background: radial-gradient(ellipse at 70% 100%, #6b4a2e, transparent 60%);
+            filter: blur(1px);
+        }
+        .burnt-inner.l {
+            left: -2px;
+            top: 10%;
+            bottom: 10%;
+            width: 8px;
+            background: radial-gradient(ellipse at 0% 50%, #6b4a2e, transparent 60%);
+            filter: blur(1px);
+        }
+        .burnt-inner.r {
+            right: -2px;
+            top: 20%;
+            bottom: 20%;
+            width: 8px;
+            background: radial-gradient(ellipse at 100% 50%, #6b4a2e, transparent 60%);
+            filter: blur(1px);
+        }
+
+        .letter-inner .wm {
+            position: absolute;
+            right: clamp(16px, 3vw, 30px);
+            bottom: clamp(16px, 3vw, 30px);
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(60px, 15vw, 110px);
+            color: rgba(100, 70, 50, 0.04);
+            pointer-events: none;
+            transform: rotate(-6deg);
+        }
+
+        /* ─── LETTER CONTENT ─── */
+        .letter-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .letter-content .date {
+            text-align: right;
+            font-size: clamp(13px, 2vw, 17px);
+            color: rgba(60, 40, 30, 0.45);
+            letter-spacing: 2px;
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+
+        .letter-content .drop-cap {
+            float: left;
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(48px, 12vw, 78px);
+            line-height: 0.8;
+            color: #8b1a2b;
+            margin-right: 4px;
+            margin-top: -2px;
+        }
+
+        .letter-content .first-line {
+            font-size: clamp(17px, 3vw, 22px);
+            font-weight: 600;
+            color: #3d2419;
+            margin-bottom: 12px;
+        }
+
+        .letter-content p {
+            margin-bottom: 12px;
+            text-indent: 20px;
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeUp 0.7s forwards;
+        }
+
+        .letter-content p:nth-of-type(1) {
+            animation-delay: 0.5s;
+        }
+        .letter-content p:nth-of-type(2) {
+            animation-delay: 0.7s;
+        }
+        .letter-content p:nth-of-type(3) {
+            animation-delay: 0.9s;
+        }
+        .letter-content p:nth-of-type(4) {
+            animation-delay: 1.1s;
+        }
+        .letter-content p:nth-of-type(5) {
+            animation-delay: 1.3s;
+        }
+        .letter-content p:nth-of-type(6) {
+            animation-delay: 1.5s;
+        }
+
+        .letter-content .promise-box {
+            opacity: 0;
+            animation: fadeUp 0.7s 0.9s forwards;
+            background: rgba(200, 180, 165, 0.10);
+            border-left: 4px solid #a02030;
+            border-right: 4px solid #a02030;
+            padding: clamp(12px, 2vw, 20px);
+            margin: 16px 0 12px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .letter-content .promise-box .pline {
+            font-size: clamp(16px, 2.5vw, 20px);
+            font-weight: 600;
+            color: #61252d;
+            text-indent: 0 !important;
+            margin-bottom: 2px;
+        }
+
+        .letter-content .promise-box .pline strong {
+            color: #8b1a2b;
+        }
+
+        .letter-content .promise-box .psub {
+            font-style: italic;
+            font-size: clamp(14px, 2vw, 17px);
+            color: rgba(60, 40, 30, 0.55);
+            text-indent: 0 !important;
+            margin-bottom: 0;
+        }
+
+        .letter-content .signature {
+            margin-top: 24px;
+            text-align: right;
+            opacity: 0;
+            animation: fadeUp 0.7s 1.7s forwards;
+        }
+
+        .letter-content .signature .sig-label {
+            display: block;
+            font-size: clamp(15px, 2vw, 18px);
+            color: rgba(60, 40, 30, 0.45);
+            letter-spacing: 2px;
+        }
+
+        .letter-content .signature .sig-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(34px, 8vw, 54px);
+            color: #3d2419;
+            display: block;
+            margin-top: -6px;
+        }
+
+        .letter-content .heart-divider {
+            text-align: center;
+            font-size: clamp(18px, 3vw, 26px);
+            color: #a02030;
+            margin-top: 20px;
+            opacity: 0.5;
+            opacity: 0;
+            animation: fadeUp 0.7s 1.9s forwards;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─── NAV ─── */
+        .letter-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(60, 40, 30, 0.08);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .letter-nav .nav-btn {
+            background: rgba(60, 40, 30, 0.07);
+            border: none;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(14px, 2vw, 17px);
+            color: #3d2419;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .letter-nav .nav-btn:hover {
+            background: rgba(60, 40, 30, 0.15);
+            transform: scale(1.04);
+        }
+
+        .letter-nav .nav-btn:active {
+            transform: scale(0.96);
+        }
+
+        .letter-nav .nav-hint {
+            font-size: clamp(13px, 1.8vw, 15px);
+            color: rgba(60, 40, 30, 0.30);
+            font-style: italic;
+        }
+
+        /* ─── HEART BURST ─── */
+        #heart-burst {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .burst-heart {
+            position: absolute;
+            animation: burstFly 1.6s ease-out forwards;
+            font-size: 28px;
+        }
+
+        @keyframes burstFly {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 540px) {
+            .letter-card {
+                max-width: 420px;
+            }
+            .front-text .name {
+                font-size: 32px;
+            }
+            .front-text .for-label {
+                font-size: 11px;
+                letter-spacing: 8px;
+            }
+            .front-text .from-label {
+                font-size: 10px;
+                letter-spacing: 6px;
+            }
+            .front-text .sub {
+                font-size: 11px;
+            }
+            .seal {
+                width: 56px;
+                height: 56px;
+                bottom: 20%;
+            }
+            .seal-text {
+                font-size: 20px;
+            }
+            .ribbon-bow {
+                width: 28px;
+                height: 28px;
+            }
+            .ribbon-bow::before,
+            .ribbon-bow::after {
+                width: 16px;
+                height: 10px;
+            }
+            .ribbon-bow::before {
+                left: -6px;
+            }
+            .ribbon-bow::after {
+                right: -6px;
+            }
+            .ribbon-h {
+                height: 5px;
+            }
+            .ribbon-v {
+                width: 5px;
+            }
+            .letter-inner {
+                padding: 20px 16px;
+                font-size: 15px;
+            }
+            .letter-content p {
+                text-indent: 14px;
+            }
+            .letter-content .drop-cap {
+                font-size: 42px;
+            }
+            .letter-content .first-line {
+                font-size: 16px;
+            }
+            .letter-content .signature .sig-name {
+                font-size: 32px;
+            }
+            .letter-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            .tap-hint {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .letter-card {
+                max-width: 340px;
+            }
+            .front-text .name {
+                font-size: 26px;
+            }
+            .seal {
+                width: 46px;
+                height: 46px;
+                bottom: 18%;
+            }
+            .seal-text {
+                font-size: 16px;
+            }
+            .front-text .for-label {
+                font-size: 10px;
+                letter-spacing: 6px;
+            }
+            .front-text .from-label {
+                font-size: 9px;
+                letter-spacing: 5px;
+            }
+            .front-text .sub {
+                font-size: 10px;
+            }
+            .ribbon-bow {
+                width: 22px;
+                height: 22px;
+            }
+            .ribbon-bow::before,
+            .ribbon-bow::after {
+                width: 12px;
+                height: 8px;
+            }
+            .ribbon-bow::before {
+                left: -5px;
+            }
+            .ribbon-bow::after {
+                right: -5px;
+            }
+            .ribbon-h {
+                height: 4px;
+            }
+            .ribbon-v {
+                width: 4px;
+            }
+            .letter-inner {
+                padding: 16px 12px;
+                font-size: 14px;
+            }
+            .letter-content .drop-cap {
+                font-size: 34px;
+            }
+            .letter-content .first-line {
+                font-size: 14px;
+            }
+            .letter-content .signature .sig-name {
+                font-size: 26px;
+            }
+        }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(60, 40, 30, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(60, 40, 30, 0.15);
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Wooden Desk -->
-    <div class="table"></div>
-
-    <!-- Candle Glow -->
-    <div class="candle-glow"></div>
+    <!-- Desk Background -->
+    <div class="desk"></div>
+    <div class="glow"></div>
 
     <!-- Dust Particles -->
     <div id="dust-container"></div>
 
-    <!-- Floating Hearts Background -->
-    <div id="hearts-bg"></div>
+    <!-- Heart Burst Container -->
+    <div id="heart-burst"></div>
 
     <!-- Main Scene -->
-    <div id="scene">
+    <div class="scene">
 
-        <!-- ENVELOPE -->
-        <div class="envelope-wrapper" id="envelopeWrapper">
-            <div class="envelope" onclick="openLetter()">
-                <!-- Ribbon Cross -->
-                <div class="ribbon ribbon-horiz"></div>
-                <div class="ribbon ribbon-vert"></div>
+        <!-- LETTER CARD (like the image) -->
+        <div class="letter-card" id="letterCard" onclick="openLetter()">
 
-                <!-- Front Text -->
-                <div class="envelope-front">
-                    <span class="for-label">✨ FOR</span>
-                    <span class="name-label">TANISHA</span>
-                    <span class="from-label">💫 FROM SANYAM</span>
-                    <span class="sub-label">A letter that was always meant for you.</span>
-                </div>
+            <!-- Burnt Edges -->
+            <div class="burnt burnt-t"></div>
+            <div class="burnt burnt-b"></div>
+            <div class="burnt burnt-l"></div>
+            <div class="burnt burnt-r"></div>
 
-                <!-- Wax Seal (centered over text) -->
-                <div class="seal" id="seal">
-                    <span class="seal-text">TS</span>
-                    <div class="seal-glow"></div>
-                </div>
+            <!-- Watermark -->
+            <div class="watermark">TS</div>
+
+            <!-- Ribbon -->
+            <div class="ribbon-wrap">
+                <div class="ribbon ribbon-h"></div>
+                <div class="ribbon ribbon-v"></div>
+                <div class="ribbon-bow"></div>
             </div>
-            <div class="click-hint">💕 tap the seal to open 💕</div>
+
+            <!-- Wax Seal -->
+            <div class="seal" id="seal">
+                <span class="seal-text">TS</span>
+                <div class="seal-glow"></div>
+            </div>
+
+            <!-- Front Text -->
+            <div class="front-text">
+                <span class="for-label">FOR</span>
+                <span class="name">TANISHA</span>
+                <span class="from-label">FROM SANYAM</span>
+                <span class="sub">A letter that was always meant for you.</span>
+            </div>
         </div>
 
-        <!-- LETTER -->
+        <!-- Tap Hint -->
+        <div class="tap-hint">✦ tap the seal to open ✦</div>
+
+        <!-- LETTER (hidden until opened) -->
         <div class="letter-wrapper" id="letterWrapper">
-            <div class="letter" id="letter">
-                <!-- Paper Texture & Burnt Edges -->
+            <div class="letter-inner" id="letterInner">
                 <div class="paper-texture"></div>
-                <div class="burnt-edge burnt-top"></div>
-                <div class="burnt-edge burnt-bottom"></div>
-                <div class="burnt-edge burnt-left"></div>
-                <div class="burnt-edge burnt-right"></div>
+                <div class="burnt-inner t"></div>
+                <div class="burnt-inner b"></div>
+                <div class="burnt-inner l"></div>
+                <div class="burnt-inner r"></div>
+                <div class="wm">TS</div>
 
-                <!-- TS Watermark -->
-                <div class="watermark">TS</div>
-
-                <!-- Letter Content (scrollable) -->
                 <div class="letter-content">
                     <div class="date">🌹 5 August 2026 🌹</div>
 
-                    <div class="drop-cap">M</div>
-                    <p class="first-line">y Dearest Tanisha,</p>
+                    <span class="drop-cap">M</span>
+                    <span class="first-line">y Dearest Tanisha,</span>
 
                     <p>💖 If ever life feels heavy, I promise to be your calm.</p>
                     <p>☀️ If ever the world feels cold, I promise to be your warmth.</p>
                     <p>🌟 If ever you doubt your worth, I promise to remind you of every reason why you are everything to me.</p>
 
                     <div class="promise-box">
-                        <p class="promise-line">
-                            📅 From <strong>8 August</strong> until <strong>22 August</strong>,
-                            I promise not to smoke a single cigarette or drink any alcohol.
-                        </p>
-                        <p class="promise-sub">✨ No excuses. No exceptions. ✨</p>
+                        <p class="pline">📅 From <strong>8 August</strong> until <strong>22 August</strong>, I promise not to smoke a single cigarette or drink any alcohol.</p>
+                        <p class="psub">✨ No excuses. No exceptions. ✨</p>
                     </div>
 
                     <p>💫 I may not have all the answers, but I promise to always choose you, today, tomorrow, and in every lifetime after.</p>
@@ -91,18 +1020,137 @@
                     <div class="heart-divider">❤️‍🔥 ✦ ❤️‍🔥 ✦ ❤️‍🔥</div>
                 </div>
 
-                <!-- Navigation -->
                 <div class="letter-nav">
-                    <button class="nav-btn" onclick="closeLetter()">✕ Close Letter</button>
+                    <button class="nav-btn" onclick="event.stopPropagation(); closeLetter();">✕ Close</button>
                     <span class="nav-hint">👇 scroll to read more</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Confetti/Hearts container for burst effect -->
-    <div id="heart-burst"></div>
+    <script>
+        // ─── DUST PARTICLES ───
+        (function() {
+            const container = document.getElementById('dust-container');
+            for (let i = 0; i < 30; i++) {
+                const d = document.createElement('div');
+                d.className = 'dust';
+                const s = 2 + Math.random() * 4;
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const dx = (Math.random() - 0.5) * 600;
+                const dy = (Math.random() - 0.5) * 400 - 200;
+                const dur = 12 + Math.random() * 18;
+                const del = Math.random() * 16;
+                d.style.cssText =
+                    `left:${x}%;top:${y}%;width:${s}px;height:${s}px;--dx:${dx}px;--dy:${dy}px;animation-duration:${dur}s;animation-delay:${del}s;`;
+                container.appendChild(d);
+            }
+        })();
 
-    <script src="script.js"></script>
+        // ─── HEART BURST ───
+        function burstHearts() {
+            const container = document.getElementById('heart-burst');
+            const emojis = ['❤️', '💕', '💖', '✨', '🌹', '💗', '❤️‍🔥'];
+            const cx = window.innerWidth / 2;
+            const cy = window.innerHeight / 2;
+            for (let i = 0; i < 35; i++) {
+                const el = document.createElement('div');
+                el.className = 'burst-heart';
+                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                const tx = (Math.random() - 0.5) * 700;
+                const ty = (Math.random() - 0.5) * 600 - 300;
+                const size = 20 + Math.random() * 44;
+                const xOff = (Math.random() - 0.5) * 120;
+                const yOff = (Math.random() - 0.5) * 80;
+                el.style.cssText =
+                    `left:${cx + xOff}px;top:${cy + yOff}px;font-size:${size}px;--tx:${tx}px;--ty:${ty}px;animation-duration:${1.2 + Math.random() * 0.8}s;`;
+                container.appendChild(el);
+                setTimeout(() => el.remove(), 2500);
+            }
+        }
+
+        // ─── OPEN ───
+        function openLetter() {
+            document.body.classList.add('open');
+            burstHearts();
+            if (navigator.vibrate) navigator.vibrate(12);
+            setTimeout(() => {
+                const w = document.getElementById('letterWrapper');
+                if (w) w.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 900);
+        }
+
+        // ─── CLOSE ───
+        function closeLetter() {
+            document.body.classList.remove('open');
+            setTimeout(() => {
+                const card = document.getElementById('letterCard');
+                if (card) {
+                    card.style.transition = 'none';
+                    card.style.transform = '';
+                    card.style.opacity = '';
+                    setTimeout(() => card.style.transition = '', 50);
+                }
+            }, 300);
+        }
+
+        // ─── KEYBOARD ───
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.body.classList.contains('open')) closeLetter();
+            if ((e.key === 'Enter' || e.key === ' ') && !document.body.classList.contains('open')) {
+                document.getElementById('seal')?.click();
+            }
+        });
+
+        // ─── PARALLAX (desktop) ───
+        let isDesktop = window.innerWidth > 768;
+        window.addEventListener('resize', () => { isDesktop = window.innerWidth > 768; });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDesktop) return;
+            const card = document.getElementById('letterCard');
+            if (!card || document.body.classList.contains('open')) return;
+            const rect = card.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            const dx = (e.clientX - cx) / rect.width;
+            const dy = (e.clientY - cy) / rect.height;
+            const max = 8;
+            card.style.transform =
+                `perspective(800px) rotateX(${-dy * max}deg) rotateY(${dx * max}deg) scale(1.015)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            const card = document.getElementById('letterCard');
+            if (card) card.style.removeProperty('transform');
+        });
+
+        // ─── BREATHING LETTER ───
+        const inner = document.getElementById('letterInner');
+        if (inner) {
+            let phase = 0;
+            setInterval(() => {
+                if (document.body.classList.contains('open')) {
+                    phase += 0.02;
+                    const s = 1 + Math.sin(phase) * 0.0012;
+                    inner.style.transform = `scale(${s})`;
+                }
+            }, 50);
+        }
+
+        // ─── SCROLL HINT ───
+        document.addEventListener('scroll', () => {
+            const hint = document.querySelector('.nav-hint');
+            if (!hint) return;
+            const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            hint.style.opacity = pct > 0.12 ? '0' : '1';
+        });
+
+        // ─── CONSOLE ───
+        console.log('%c❤️ For Tanisha ❤️', 'font-size:24px;color:#8b1a2b;font-weight:bold;');
+        console.log('%cFrom Sanyam — 5 August 2026', 'font-size:16px;color:#3d2419;font-style:italic;');
+    </script>
+
 </body>
 </html>
