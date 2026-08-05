@@ -1,69 +1,65 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>For Tanisha ❤️ From Sanyam</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>💌 For Tanisha ❤️ From Sanyam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <!-- Wooden Desk Background -->
     <div class="table"></div>
 
-    <!-- Candle Glow Overlay -->
+    <!-- Candle Glow -->
     <div class="candle-glow"></div>
 
-    <!-- Floating Dust Particles -->
+    <!-- Floating Dust -->
     <div id="dust-container"></div>
 
-    <!-- Main Scene -->
-    <div id="scene" class="scene">
-        <!-- ENVELOPE -->
+    <!-- Main Container -->
+    <div id="scene">
+
+        <!-- ENVELOPE (click to open) -->
         <div class="envelope-wrapper" id="envelopeWrapper">
             <div class="envelope" onclick="openLetter()">
-                <!-- Parchment texture overlay -->
-                <div class="envelope-texture"></div>
-
-                <!-- Silk Ribbon -->
+                <!-- Ribbon -->
                 <div class="ribbon ribbon-left"></div>
                 <div class="ribbon ribbon-right"></div>
                 <div class="ribbon ribbon-top"></div>
                 <div class="ribbon ribbon-bottom"></div>
+
+                <!-- Front Text (always on top) -->
+                <div class="envelope-front">
+                    <div class="for-label">FOR</div>
+                    <div class="name-label">TANISHA</div>
+                    <div class="from-label">FROM SANYAM</div>
+                    <div class="sub-label">A letter that was always meant for you.</div>
+                </div>
 
                 <!-- Wax Seal -->
                 <div class="seal" id="seal">
                     <span class="seal-text">TS</span>
                     <div class="seal-glow"></div>
                 </div>
-
-                <!-- Envelope Front Text -->
-                <div class="envelope-front-text">
-                    <span class="for-text">FOR</span>
-                    <span class="name-text">TANISHA</span>
-                    <span class="from-text">FROM SANYAM</span>
-                    <span class="sub-text">A letter that was always meant for you.</span>
-                </div>
             </div>
+            <div class="click-hint">✦ tap the seal ✦</div>
         </div>
 
-        <!-- LETTER -->
+        <!-- LETTER (hidden until opened) -->
         <div class="letter-wrapper" id="letterWrapper">
             <div class="letter" id="letter">
-                <!-- Paper Texture Overlay -->
+                <!-- Texture & burnt edges -->
                 <div class="paper-texture"></div>
-
-                <!-- Burnt Edges -->
                 <div class="burnt-edge burnt-top"></div>
                 <div class="burnt-edge burnt-bottom"></div>
                 <div class="burnt-edge burnt-left"></div>
                 <div class="burnt-edge burnt-right"></div>
 
-                <!-- TS Watermark -->
+                <!-- Watermark -->
                 <div class="watermark">TS</div>
 
-                <!-- Letter Content -->
+                <!-- Content -->
                 <div class="letter-content">
                     <div class="date">25 May 2025</div>
 
@@ -74,26 +70,30 @@
                     <p>If ever the world feels cold, I promise to be your warmth.</p>
                     <p>If ever you doubt your worth, I promise to remind you of every reason why you are everything to me.</p>
 
-                    <p class="promise-highlight">
-                        From <strong>8 August</strong> until <strong>22 August</strong>,<br />
-                        I promise not to smoke a single cigarette<br />
-                        or drink any alcohol.
-                    </p>
-                    <p class="promise-highlight-sub">No excuses. No exceptions.</p>
+                    <div class="promise-box">
+                        <p class="promise-line">
+                            From <strong>8 August</strong> until <strong>22 August</strong>,
+                            I promise not to smoke a single cigarette or drink any alcohol.
+                        </p>
+                        <p class="promise-sub">No excuses. No exceptions.</p>
+                    </div>
 
                     <p>I may not have all the answers, but I promise to always choose you, today, tomorrow, and in every lifetime after.</p>
                     <p>I promise to stand by you, to grow with you, and to love you, in the little moments and the big ones too.</p>
 
                     <div class="signature">
-                        <span class="signature-label">Forever yours,</span>
-                        <span class="signature-name">Sanyam</span>
+                        <span class="sig-label">Forever yours,</span>
+                        <span class="sig-name">Sanyam</span>
                     </div>
+
+                    <!-- Decorative heart -->
+                    <div class="heart-divider">❤️</div>
                 </div>
 
                 <!-- Navigation -->
                 <div class="letter-nav">
                     <button class="nav-btn" onclick="closeLetter()">✕ Close</button>
-                    <span class="nav-hint">Swipe or scroll to continue</span>
+                    <span class="nav-hint">swipe or scroll to read more</span>
                 </div>
             </div>
         </div>
